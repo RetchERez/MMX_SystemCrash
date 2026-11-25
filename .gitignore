@@ -26,3 +26,6 @@ scratch/
 
 __pycache__/
 *.pyc
+
+# Promotional screenshots shown on the README and forum posts
+!screenshots/*.png
