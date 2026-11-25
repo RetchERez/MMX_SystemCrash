@@ -1,7 +1,7 @@
 # CHAIN REACTION v1.0 — QA record
 
-Build: `chain_reaction_v1.0.sfc`, 2,097,152 bytes, CRC32 2FCD2B72 (byte-identical to candidate rc6).
-BPS 4,447 bytes, roundtrip verified against the Rev 1 source (CRC32 DED53C64).
+Build: `chain_reaction_v1.0.sfc`, 2,097,152 bytes, CRC32 46B26E3C (byte-identical to candidate rc8).
+BPS 4,365 bytes, roundtrip verified against the Rev 1 source (CRC32 DED53C64).
 Logs: `qa/` in the development ZIP (`run_all_final.log`, `ending.log`, `bsnes_*.log`, `mesen.log`, matrix JSON).
 
 Changes since the first v1.0 package (2026-11-25, user requests):
@@ -11,8 +11,11 @@ Changes since the first v1.0 package (2026-11-25, user requests):
   $3F); Radar Down's radar-guided weapons were already a third (5 of 17 Sky Claws + 1 of 2 deck turrets = 6 of 19)
 - Radar Down also turns off the running lights on every airport platform: the stage's palette animator (effect $33
   sub $09) is refused before Death Rogumer, and row 1 loads with the lights at the game's unlit value. The retail game
-  uses this same animator switch for Frozen Factory and Blackout ($82:FA19). Death Rogumer keeps its lights
-- Kuwanger's boss room restores its lights when the boss appears (from rc3)
+  uses this same animator switch for Frozen Factory and Blackout ($82:FA19). Death Rogumer and the Storm Eagle fight
+  never show those colours (tests/test_ship_lights.py), so they look exactly as before
+- Kuwanger's arena stays on Grid Down's emergency lighting like the rest of the tower (rc8, user decision). The rc3
+  boss-room restore was removed: it lit the room only after it had been seen dark, and it ran inside Kuwanger's code.
+  No patch code runs in any boss fight now (tests/test_bosses.py)
 - timing quirks removed (rc6): the Batton Bone gate moved from the bat's per-frame dispatch to its spawn state
   ($87:A10D), and the two load hooks exit on a quick stage-number check, so stages without a new reaction run the same
   CPU cycles as the original. This removed the bsnes Sigma 2 joypad-byte difference and the Mesen Mandrill
@@ -31,7 +34,9 @@ Changes since the first v1.0 package (2026-11-25, user requests):
 | Collision | identical normal vs altered in every reachable cell, every checkpoint, all five stages |
 | Items, both states, all 8 stages | every Heart Tank and Sub Tank collected; every capsule spawns |
 | Hadouken | awarded by the retail capsule ($87:D0DB) at the same frame as vanilla; in real play it is always taken in Ambush Called Off (it needs every Maverick beaten) |
-| Boss fights of changed stages | Kuwanger and Storm Eagle fights as retail (Eagle differs only in the undisplayed row 0) |
+| Bosses of the five changed stages (`tests/test_bosses.py`) | fought from checkpoint 2 with the same input in both versions: each boss appears on the same frame and its actor memory is identical to the original in all 600 compared frames; Penguin, Storm Eagle, Octopus and Armadillo also show identical screens; Kuwanger's screen differs only by the arena's emergency lighting |
+| Death Rogumer and the Storm Eagle fight (`tests/test_ship_lights.py`) | forcing the platform-light colours off changes 0 of 60 frames on the deck and in the fight (and all 60 on the airport platforms, the control) |
+| Glitch sweep (`tools/visual_sweep.py`, inspection) | every screen of the five changed stages, original vs changed, inspected side by side: no stray tiles, palette bleed or sprite colour changes; every difference is the intended one |
 | Controller-only traversal, every checkpoint | no softlocks or crashes; deaths only at retail pits the bot also falls into on the normal stage |
 | Sigma | fortress icon appears after all 8 and loads Sigma 1 for real; Sigma 1-4 WRAM identical to vanilla over 2,400 frames |
 | Ending (`tests/test_ending.py`) | final room, Velguarder (HP set to 1 once it fights, killed by X's shot), Sigma (real buster hits only), Wolf Sigma (its head is out of reach from the floor: after 300 frames the game's own lethal-hit writes $88:CBF3-CC0F stand in for the final shot), then the game's own death sequence, escape, epilogue, credits and Sigma's last message: all of WRAM identical to vanilla in all 134 snapshots (every 300 frames, about 40,000 frames) |

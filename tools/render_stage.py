@@ -35,7 +35,7 @@ def decode_tile(vram, n):
     return px
 
 
-def render(rom, stage, grid, vram, pal, out, collision_overlay=False, scale=1):
+def render(rom, stage, grid, vram, pal, out, collision_overlay=False, scale=1, labels=True):
     ps = d.pc(ptr24(rom, 0x868D93 + stage * 3))
     pb = d.pc(ptr24(rom, 0x868E02 + stage * 3))
     pm = d.pc(ptr24(rom, 0x868E71 + stage * 3))
@@ -93,8 +93,9 @@ def render(rom, stage, grid, vram, pal, out, collision_overlay=False, scale=1):
                             cv = rom[pcol + mi]
                             if cv:
                                 draw.text((ox + 2, oy + 2), f'{cv:02X}', fill=(255, 0, 255))
-            draw.rectangle([sx0, sy0, sx0 + 255, sy0 + 255], outline=(255, 255, 0))
-            draw.text((sx0 + 4, sy0 + 4), f'r{r}c{c} s{sc:02X}', fill=(255, 255, 0))
+            if labels:
+                draw.rectangle([sx0, sy0, sx0 + 255, sy0 + 255], outline=(255, 255, 0))
+                draw.text((sx0 + 4, sy0 + 4), f'r{r}c{c} s{sc:02X}', fill=(255, 255, 0))
     if scale != 1:
         img = img.resize((int(W * scale), int(H * scale)))
     img.save(out)

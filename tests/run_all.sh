@@ -9,8 +9,8 @@ done
 for sb in "7 20" "5 40" "1 04"; do   # Ambush/Meltdown change nothing at load: covered by test_ambush/test_meltdown and the matrix probes
   echo "== persist $sb"; timeout 1800 python -u tests/test_persist.py $ROM $sb 2>&1 | grep -v Map_; done
 echo "== parity"; timeout 3600 python -u tests/test_parity.py $ROM 2>&1 | grep -v Map_
-for t in test_boss_arenas test_items; do echo "== $t"; timeout 5400 python -u tests/$t.py 2>&1 | grep -v Map_; done
-for t in test_hadouken test_collision test_sweep test_traverse test_minecart test_radar_lights test_ending; do echo "== $t"; timeout 7200 python -u tests/$t.py $ROM 2>&1 | grep -v Map_; done
+for t in test_items; do echo "== $t"; timeout 5400 python -u tests/$t.py 2>&1 | grep -v Map_; done
+for t in test_hadouken test_collision test_sweep test_traverse test_minecart test_radar_lights test_ship_lights test_bosses test_ending; do echo "== $t"; timeout 7200 python -u tests/$t.py $ROM 2>&1 | grep -v Map_; done
 ) > build/qa/suite.log 2>&1
 wait
 echo "== matrix"; grep -h "stage" build/matrix/stage*.log

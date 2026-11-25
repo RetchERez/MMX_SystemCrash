@@ -33,10 +33,11 @@ Storm Eagle     -> Spark Mandrill: Blackout (original)
 
 Spark Mandrill  -> Boomer Kuwanger: Grid Down (new)
                    The power plant stops feeding the tower. The interior
-                   runs on emergency lighting (the sky and the outside
-                   climb stay lit), one laser-grid sensor loses power,
-                   and the Turn Cannon near the top is dead. The elevator,
-                   the hover platforms and every robot still work.
+                   runs on emergency lighting, Kuwanger's arena
+                   included (the sky and the outside climb stay lit).
+                   One laser-grid sensor loses power and the Turn Cannon
+                   near the top is dead. The elevator, the hover
+                   platforms and every robot still work.
 
 Boomer Kuwanger -> Storm Eagle: Radar Down (new)
                    Kuwanger's tower carried the airport's radar. The
@@ -44,7 +45,6 @@ Boomer Kuwanger -> Storm Eagle: Radar Down (new)
                    the control tower's windows go dark, a third of the
                    Sky Claw cranes hang dead at their posts, and one of
                    Death Rogumer's two deck guns loses its target.
-                   Death Rogumer has its own power: its lights stay on.
 
 Launch Octopus  -> Sting Chameleon: Flooded Forest (original)
                    The low forest floods.
@@ -60,7 +60,8 @@ Armored Armadillo -> Launch Octopus: Empty Arsenal (new)
                    two volleys in three come with one bomb instead of two.
 
 If the Maverick has not been beaten, the stage is exactly the original.
-Bosses, weapons, items, Sigma's fortress and the ending are unchanged.
+The bosses themselves, weapons, items, Sigma's fortress and the ending are
+unchanged.
 Every Heart Tank, Sub Tank, armour part and the Hadouken can still be found
 in any order. Passwords work as normal and restore every change.
 
@@ -75,7 +76,7 @@ SHA-1: C65216760BA99178100A10D98457CF11496C2097
 The patch refuses any other ROM. A file of 1,573,376 bytes has a 512-byte
 copier header; remove it first.
 
-After patching: 2,097,152 bytes (2 MB), CRC32 2FCD2B72.
+After patching: 2,097,152 bytes (2 MB), CRC32 46B26E3C.
 
 
 HOW TO PATCH
