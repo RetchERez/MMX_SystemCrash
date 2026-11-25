@@ -1,7 +1,7 @@
 # SYSTEM CRASH v1.0 — QA record
 
-Build: `system_crash_v1.0.sfc`, 2,097,152 bytes, CRC32 46B26E3C (byte-identical to candidate rc8).
-BPS 4,365 bytes, roundtrip verified against the Rev 1 source (CRC32 DED53C64).
+Build: `system_crash_v1.0.sfc`, 2,097,152 bytes, CRC32 FE1AC27A (byte-identical to candidate rc13).
+BPS 6,368 bytes, roundtrip verified against the Rev 1 source (CRC32 DED53C64).
 Logs: `qa/` in the development ZIP (`run_all_final.log`, `ending.log`, `bsnes_*.log`, `mesen.log`, matrix JSON).
 
 Changes since the first v1.0 package (2026-11-25, user requests):
@@ -21,6 +21,15 @@ Changes since the first v1.0 package (2026-11-25, user requests):
   CPU cycles as the original. This removed the bsnes Sigma 2 joypad-byte difference and the Mesen Mandrill
   frame-counter offset that earlier builds showed
 
+Additions since the first v1.0 candidates (2026-11-25, user requests):
+- renamed from Chain Reaction to SYSTEM CRASH
+- stage select: OFFLINE label on every stage a beaten Maverick has changed (src/badge.asm). Hooked into the
+  stage-select cursor object ($81:8017), which never runs in gameplay; two 16x16 sprites per label in entries 0-15;
+  the palette row, entries 0-15 with their high-table bytes and the upload-queue bytes it borrows are kept in the
+  game's fade copy ($7F:E000) and given back the frame a stage is picked (tests/test_badge.py)
+- title: SYSTEM CRASH subtitle under the logo (src/title.asm), hooked only into the logo-idle and menu states
+  (tests/test_title.py, judged against the same build without it: --define SC_NO_TITLE)
+
 ## Exercised (snes9x libretro, headless, scripted)
 
 | Area | Result |
@@ -39,13 +48,17 @@ Changes since the first v1.0 package (2026-11-25, user requests):
 | Glitch sweep (`tools/visual_sweep.py`, inspection) | every screen of the five changed stages, original vs changed, inspected side by side: no stray tiles, palette bleed or sprite colour changes; every difference is the intended one |
 | Controller-only traversal, every checkpoint | no softlocks or crashes; deaths only at retail pits the bot also falls into on the normal stage |
 | Sigma | fortress icon appears after all 8 and loads Sigma 1 for real; Sigma 1-4 WRAM identical to vanilla over 2,400 frames |
+| Stage-select label (`tests/test_badge.py`) | every single source beaten, three, all eight and none, plus a leftover palette row: labels exactly on the changed stages every frame, every original sprite unchanged, all of WRAM identical to the original after the pick |
+| Title subtitle (`tests/test_title.py`) | logo to password screen and idle logo to attract demo: shown on the logo and the menu only; WRAM identical to the build without it once the title is left (17-18 frames of transient timing differences while the menu loads or the demo starts) |
 | Ending (`tests/test_ending.py`) | final room, Velguarder (HP set to 1 once it fights, killed by X's shot), Sigma (real buster hits only), Wolf Sigma (its head is out of reach from the floor: after 300 frames the game's own lethal-hit writes $88:CBF3-CC0F stand in for the final shot), then the game's own death sequence, escape, epilogue, credits and Sigma's last message: all of WRAM identical to vanilla in all 134 snapshots (every 300 frames, about 40,000 frames) |
 
 ## Other emulators
 
 **bsnes-mercury balanced (libretro)**, WRAM cleared at load (bsnes randomizes power-on RAM): reaction tests, items,
-Hadouken, boss arenas, platform lights, parity (10/10 identical) and Sigma 1-4 (all identical to vanilla) rerun with the
-same results.
+Hadouken, boss arenas, platform lights, parity (10/10 identical), Sigma 1-4 (all identical to vanilla) and the title
+subtitle rerun with the same results. Stage-select label on bsnes: the cursor's movement animation can run one frame
+off while labels are shown (any added per-frame code moves NMI timing on a cycle-exact core); every WRAM snapshot
+while browsing and after the pick is identical.
 
 **Mesen 2.1.1** (`--testrunner`, Lua, real password and stage select, every stage, source alive and beaten): normal
 states identical to vanilla after 240 frames of play; Grid Down, Radar Down and Empty Arsenal differ at load only in their

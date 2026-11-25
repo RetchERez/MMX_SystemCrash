@@ -13,6 +13,9 @@ from mmx import *
 
 ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
 rom = VANILLA.read_bytes()
+# baseline for the comparison: the original game by default, or (on cycle-exact cores, where the title subtitle
+# shifts menu timing by a frame) the same build without the label: tools/build.py --define SC_NO_LABEL
+LBASE = Path(__import__('os').environ['SC_LABEL_BASE']) if __import__('os').environ.get('SC_LABEL_BASE') else VANILLA
 SRC = {1: 3, 2: 1, 3: 2, 4: 8, 5: 7, 6: 5, 7: 6, 8: 4}            # changed stage -> Maverick whose defeat changes it
 POS = {s: (35 + 48 * GRID[s][0] + 5, 18 + 48 * GRID[s][1] + 34) for s in SRC}   # left sprite of the label
 OUT = ROOT / 'build/qa/badge'; OUT.mkdir(parents=True, exist_ok=True)
@@ -75,14 +78,14 @@ def diff(x, y, skip=None):
 
 
 def run(mask):
-    v = play(VANILLA, mask, 'v'); p = play(ROM, mask, 'p')
+    v = play(LBASE, mask, 'v'); p = play(ROM, mask, 'p')
     beaten = {k for k, b in MASK_BIT.items() if mask & b}
     want = sorted(POS[s] for s in SRC if SRC[s] in beaten)
     fails = []
-    isb = lambda e: e[1] < 0xE0 and 0xC0 <= e[2] <= 0xC3 and e[3] == 0x3E
+    isb = lambda e: e[1] < 0xE0 and e[2] in (0xC0, 0xC2) and e[3] == 0x3E
     for f, (ov, op) in enumerate(zip(v['oam'], p['oam'])):
         badges = sorted((e[0], e[1]) for e in op if isb(e) and e[2] == 0xC0)
-        if f >= 2 and sorted((e[0], e[1], e[2]) for e in op if isb(e)) != sorted((x + 8 * t, y, 0xC0 + t) for x, y in want for t in range(4)): fails.append(f'frame {f}: label sprites not in place')
+        if f >= 2 and sorted((e[0], e[1], e[2]) for e in op if isb(e)) != sorted((x + 16 * t, y, 0xC0 + 2 * t) for x, y in want for t in range(2)): fails.append(f'frame {f}: label sprites not in place')
         if f >= 2 and badges != want: fails.append(f'frame {f}: badges {badges} want {want}')
         if [e for e in ov if e[1] < 0xE0] != [e for e in op if e[1] < 0xE0 and not isb(e)]: fails.append(f'frame {f}: original sprites differ')
     still = next((f for f, md in enumerate(p['mode']) if md != (2, 0, 1)), None) is None   # no stage was started

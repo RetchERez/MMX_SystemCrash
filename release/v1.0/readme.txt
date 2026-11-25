@@ -86,7 +86,7 @@ SHA-1: C65216760BA99178100A10D98457CF11496C2097
 The patch refuses any other ROM. A file of 1,573,376 bytes has a 512-byte
 copier header; remove it first.
 
-After patching: 2,097,152 bytes (2 MB), CRC32 {CRC}.
+After patching: 2,097,152 bytes (2 MB), CRC32 FE1AC27A.
 
 
 HOW TO PATCH
@@ -140,6 +140,8 @@ snes9x (libretro), headless and scripted:
 The stage changes, items, Hadouken, boss fights, Sigma's fortress,
 identical-to-original play and the stage select and title additions were
 run again on bsnes-mercury (libretro) with the same results, and every
-stage was checked once more in Mesen 2.
+stage was checked once more in Mesen 2. On bsnes, which runs the console
+cycle by cycle, the stage select cursor can move a frame later while the
+OFFLINE labels are shown; everything after it is identical.
 
 Not yet tested on real hardware. Please report anything odd.

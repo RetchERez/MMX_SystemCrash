@@ -12,7 +12,6 @@ lorom
 ;   $86:FA50-$86:FFFF  palette slot tables (indexed relative to $86:A260)
 ;   $87:FEE0-$87:FFFF  bank-87 stubs (reached by JSR/JMP from actor code)
 ;   $80:FC00-$80:FC0F  bank-80 stub for the post-load hook
-;   $80:FC10-$80:FC1F  bank-80 stub for the stage-select label
 ;   $80:FF20-$80:FF2F  bank-80 stubs for the title subtitle
 ;   $BF:8000-$BF:87FF  title subtitle (expansion)
 ;   $B0:8000, $B1:8000 expansion (ROM grown to 2 MiB): per-stage map/collision copies
@@ -40,7 +39,6 @@ endmacro
 %assert_free($85B460, $0020)
 %assert_free($86FAA0, $0040)
 %assert_free($80FC00, $0010)
-%assert_free($80FC10, $0010)
 %assert_free($80FF20, $0010)
 %assert_free($84F800, $0500)
 %assert_free($85B480, $0100)
@@ -58,7 +56,9 @@ incsrc "radar_down.asm"
 incsrc "empty_arsenal.asm"
 incsrc "ambush.asm"
 incsrc "meltdown.asm"
-incsrc "badge.asm"
+if not(defined("SC_NO_LABEL"))
+	incsrc "badge.asm"	; test baseline: build with --define SC_NO_LABEL
+endif
 if not(defined("SC_NO_TITLE"))
 	incsrc "title.asm"	; test baseline: build with --define SC_NO_TITLE
 endif
