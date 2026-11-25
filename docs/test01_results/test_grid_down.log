@@ -1,0 +1,2 @@
+normal (00 vs DF, Mandrill alive) identical: True
+altered (20 vs FF, Mandrill beaten) identical and different from normal: True

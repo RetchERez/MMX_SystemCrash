@@ -1,0 +1,1229 @@
+MEGA MAN X: CHAIN REACTION
+FINAL v1.0 DESIGN SPECIFICATION
+Status: DESIGN FROZEN FOR IMPLEMENTATION
+Target game: Mega Man X / Rockman X
+Platform: Super Nintendo Entertainment System
+Scope: Mega Man X1 only
+Art policy: 100% existing Mega Man X1 graphical assets
+Distribution: patch only, never ROM
+
+===============================================================================
+0. EXECUTIVE SUMMARY
+===============================================================================
+
+Mega Man X: CHAIN REACTION expands a real Mega Man X1 design concept:
+defeating certain Mavericks can alter another Maverick's stage.
+
+Retail Mega Man X already contains three major cross-stage reactions:
+
+1. Chill Penguin defeated -> Flame Mammoth's factory freezes.
+2. Storm Eagle defeated -> Death Rogumer damages Spark Mandrill's power plant,
+   causing blackouts and disabling electricity-dependent hazards/attacks.
+3. Launch Octopus defeated -> Sting Chameleon's forest/cavern floods.
+
+CHAIN REACTION completes that idea across all eight Maverick stages without
+changing what Mega Man X fundamentally is.
+
+FINAL SYSTEM RULES:
+
+- Every Maverick affects exactly ONE other Maverick stage.
+- Every Maverick stage is affected by exactly ONE Maverick.
+- Every stage has exactly TWO states: NORMAL and ALTERED.
+- No stage has compound, stacked, or multi-trigger states.
+- The original three Capcom stage reactions remain intact.
+- Five new reactions extend the same design language.
+- All boss fights, boss weaknesses, boss HP, weapons, and Sigma stages remain
+  vanilla unless a technical hook requires a behaviorally invisible relocation.
+- No new enemy species.
+- No new pixel art.
+- No X2/X3 graphics.
+- All new presentation uses existing Mega Man X1 assets.
+- Stage-order consequences are derived from existing Maverick defeat flags.
+- No new story exposition or reaction UI is added.
+
+PLAYER-FACING CONCEPT:
+
+    "Every Maverick you defeat leaves exactly one believable mark elsewhere."
+
+===============================================================================
+1. FINAL REACTION MAP
+===============================================================================
+
+SOURCE MAVERICK       TARGET STAGE         ALTERED STATE
+-------------------   -------------------  ----------------------------
+Chill Penguin         Flame Mammoth        Frozen Factory
+Flame Mammoth         Chill Penguin        Thawing Snow Mountain
+Storm Eagle           Spark Mandrill       Power-Plant Blackout
+Spark Mandrill        Boomer Kuwanger      Full-Power Tower
+Boomer Kuwanger       Armored Armadillo    Mine Reinforced
+Armored Armadillo     Launch Octopus       Munitions Shortage
+Launch Octopus        Sting Chameleon      Flooded Forest
+Sting Chameleon       Storm Eagle          Recon Network Lost
+
+This is the complete v1.0 mapping.
+
+No additional links are permitted in v1.0.
+
+===============================================================================
+2. FINAL ROM BASELINE
+===============================================================================
+
+PRIMARY v1.0 TARGET:
+
+Mega Man X (USA) (Rev 1)
+Unheadered
+ROM size: 1.5 MiB
+
+Known hashes for the target baseline:
+
+CRC32:
+DED53C64
+
+MD5:
+DF1CC0C8C8C4B61E3B834CC03366611C
+
+SHA-1:
+C65216760BA99178100A10D98457CF11496C2097
+
+SHA-256:
+B8F70A6E7FB93819F79693578887E2C11E196BDF1AC6DDC7CB924B1AD0BE2D32
+
+IMPLEMENTATION RULE:
+
+Before any patch is built, independently verify the actual input ROM's:
+- file size;
+- header state;
+- CRC32;
+- MD5;
+- SHA-1 or SHA-256.
+
+Do not assume a ROM is Rev 1 because of filename alone.
+
+v1.0 targets this one verified baseline only.
+
+No multi-revision offset support is required for v1.0.
+
+===============================================================================
+3. HISTORICAL / DESIGN BASIS
+===============================================================================
+
+Mega Man X1 already contains boss-triggered stage changes, and original Capcom
+staff later described stage changes as part of the game's intended design:
+stage order could cause the player to experience stages differently.
+
+CHAIN REACTION therefore does NOT claim to restore a documented cut eight-stage
+system.
+
+The correct historical framing is:
+
+    "CHAIN REACTION expands a documented Mega Man X1 design concept that Capcom
+     implemented selectively in the retail game."
+
+The five new reactions in this document are original CHAIN REACTION design
+decisions. They are not presented as lost Capcom content.
+
+===============================================================================
+4. STRICT GRAPHICS POLICY
+===============================================================================
+
+v1.0 requires ZERO newly drawn graphics.
+
+ALLOWED:
+- existing Mega Man X1 stage tiles;
+- existing Mega Man X1 sprite frames;
+- existing enemy sprites;
+- existing object sprites;
+- existing projectile graphics;
+- existing environmental animation frames;
+- existing palettes;
+- alternate palette assignments;
+- existing destroyed/open/inactive object states;
+- rearrangement of existing X1 tiles into alternate layouts;
+- conditional loading of existing X1 assets;
+- reuse of existing X1 smoke, steam, water, debris, electricity, status lights,
+  monitors, and machine animation;
+- ROM expansion for alternate layouts/event data if technically necessary.
+
+NOT ALLOWED:
+- new hand-drawn stage tiles;
+- new enemy art;
+- new animation frames;
+- X2 or X3 graphics;
+- fan-created replacement art;
+- modern lighting/effects inconsistent with SNES X1;
+- imported graphics from unrelated games.
+
+FAILSAFE RULE:
+
+If a visual effect cannot be built cleanly from existing X1 assets, remove that
+visual flourish and keep the gameplay state.
+
+Gameplay correctness is more important than decorative ambition.
+
+===============================================================================
+5. VANILLA ENEMY-PHILOSOPHY RULE
+===============================================================================
+
+Retail X1's altered stages establish the enemy-design philosophy.
+
+Capcom generally does NOT replace a stage's enemy roster when its environment
+changes.
+
+Instead, retail X1:
+- changes terrain/hazards while leaving normal enemies in place;
+- changes an existing enemy/miniboss behavior when the new environmental state
+  directly affects it;
+- allows existing enemies to exploit the altered environment.
+
+Retail examples:
+
+FLAME MAMMOTH AFTER CHILL PENGUIN
+- terrain changes;
+- factory enemy population remains fundamentally the same.
+
+SPARK MANDRILL AFTER STORM EAGLE
+- electrical hazards shut down;
+- visibility changes;
+- Thunder Slimer loses its electricity-dependent attack;
+- normal enemy roster remains.
+
+STING CHAMELEON AFTER LAUNCH OCTOPUS
+- water appears;
+- existing Amenhoppers gain water in which to move;
+- normal enemy ecosystem remains.
+
+CHAIN REACTION follows the same rule.
+
+GLOBAL ENEMY RULES:
+- no X2/X3 enemies;
+- no invented enemy species;
+- no roster swaps merely to make a stage "feel different";
+- preserve vanilla placement wherever possible;
+- behavior changes must be directly connected to the altered condition;
+- no new boss AI;
+- no new miniboss replacement;
+- only ONE reaction intentionally increases enemy count:
+  Boomer Kuwanger -> Armored Armadillo.
+
+===============================================================================
+6. STAGE SPECIFICATION: FLAME MAMMOTH
+===============================================================================
+
+SOURCE:
+Chill Penguin
+
+STATE:
+FROZEN FACTORY
+
+TYPE:
+Retail Mega Man X1 behavior.
+
+DESIGN:
+Preserve the vanilla stage reaction exactly.
+
+EXPECTED RETAIL EFFECTS:
+- formerly dangerous molten floor becomes frozen/safe;
+- traversal changes;
+- Heart Tank access changes accordingly;
+- retail altered tiles/palette/object state remain untouched.
+
+ENEMIES:
+No changes.
+
+Keep the complete retail factory roster, placements, HP, damage, and AI.
+
+No new enemy spawns.
+No removed enemies.
+No altered enemy timing.
+
+BOSS:
+Flame Mammoth remains 100% vanilla.
+
+BALANCE:
+Major advantage to X.
+This is intentional because it is the retail benchmark.
+
+===============================================================================
+7. STAGE SPECIFICATION: CHILL PENGUIN
+===============================================================================
+
+SOURCE:
+Flame Mammoth
+
+STATE:
+THAWING SNOW MOUNTAIN
+
+TYPE:
+New CHAIN REACTION state.
+
+DESIGN LOGIC:
+The Snow Mountain missile-base infrastructure and Flame Mammoth's industrial
+complex are presented as sharing an old thermal-management/coolant network.
+
+When Mammoth's weapons factory is destroyed, its emergency shutdown forces
+stored industrial heat/hot coolant through the return side of the system,
+causing localized thaw around the Snow Mountain installation.
+
+This is localized industrial thaw.
+It is NOT global climate change.
+
+EXISTING-ASSET PRESENTATION:
+- replace selected snow-covered foreground tiles with existing exposed
+  rock/industrial tiles from X1;
+- use existing bare structural/metal tiles already present in the stage;
+- reuse existing X1 steam/smoke animation if VRAM permits;
+- reuse existing X1 water animation only if it can be loaded cleanly without
+  tile/palette pressure;
+- otherwise omit literal water animation;
+- use existing pipe/vent graphics;
+- use the Heart Tank shelter's existing destroyed/open state rather than
+  drawing a melted version;
+- no custom dripping-icicle art;
+- no custom meltwater sprites;
+- no new palette artwork.
+
+IMPORTANT PHYSICS RULE:
+Do not add slippery-floor physics.
+Do not add "less slippery" physics.
+Snow Mountain in X1 does not need that mechanic for this reaction.
+
+ENEMIES:
+No additions.
+No removals.
+No relocation.
+No AI changes.
+
+Preserve all normal Snow Mountain encounters exactly.
+
+ITEMS:
+- Foot Parts route remains unchanged.
+- Heart Tank remains in the exact vanilla location.
+- If Flame Mammoth is defeated, the shelter that normally requires Fire Wave
+  begins in its existing destroyed/open state.
+
+This preserves the underlying progression relationship:
+Mammoth must still be defeated first.
+
+BOSS:
+Chill Penguin remains 100% vanilla.
+
+BALANCE:
+Combat neutral.
+Exploration modestly easier.
+Major payoff is visual world-state continuity.
+
+===============================================================================
+8. STAGE SPECIFICATION: SPARK MANDRILL
+===============================================================================
+
+SOURCE:
+Storm Eagle
+
+STATE:
+POWER-PLANT BLACKOUT
+
+TYPE:
+Retail Mega Man X1 behavior.
+
+DESIGN:
+Preserve exactly.
+
+EXPECTED RETAIL EFFECTS:
+- Death Rogumer damage/wreckage presentation;
+- power plant blackout/dimming;
+- electrical hazards disabled;
+- Thunder Slimer cannot perform its electricity-dependent lightning attack.
+
+ENEMIES:
+Preserve all retail normal placements.
+
+Do not remove Gun Volts, Hotarions, Flamers, Turn Cannons, or other standard
+encounters merely because the stage is blacked out.
+
+Hotarions remain useful moving light sources and should remain exactly as retail.
+
+BOSS:
+Spark Mandrill remains 100% vanilla.
+
+BALANCE:
+Mixed:
+- electrical danger reduced;
+- miniboss reduced;
+- visibility worsened.
+
+This is a model CHAIN REACTION state.
+
+===============================================================================
+9. STAGE SPECIFICATION: BOOMER KUWANGER
+===============================================================================
+
+SOURCE:
+Spark Mandrill
+
+STATE:
+FULL-POWER TOWER
+
+TYPE:
+New CHAIN REACTION state.
+
+DESIGN LOGIC:
+Spark Mandrill has seized the city's power stations and brought the city to a
+halt.
+
+Boomer Kuwanger has occupied the city's tower and converted it into a Maverick
+base.
+
+When Mandrill is defeated, city electrical distribution begins recovering.
+
+The unintended result:
+Kuwanger's tower becomes fully energized.
+
+PRESENTATION USING EXISTING X1 ASSETS:
+- activate/brighter existing tower lights;
+- use existing status-indicator tiles/palettes;
+- activate existing machine/elevator lighting;
+- use existing Ray Trap sensor visuals;
+- no new machinery;
+- no new defense art;
+- no new rooms.
+
+ENEMY ROSTER:
+Preserve all normal tower placements.
+
+BEHAVIOR CHANGES:
+
+RAY TRAP
+- same position;
+- same beam;
+- same damage;
+- same sensor geometry;
+- approximately 15-20% shorter trigger-to-fire delay.
+
+SLIDE CANNON
+- same position;
+- same HP;
+- same shot damage;
+- approximately 10% faster attack/platform cycle.
+
+ALL OTHER ENEMIES
+- retail behavior.
+
+Do not buff Mega Tortoise.
+Do not add more enemies.
+
+ITEM / ROUTE SAFETY:
+- Heart Tank unchanged;
+- outside tower climb unchanged;
+- elevators remain valid;
+- no laser moved onto an item route;
+- no crush geometry altered.
+
+BOSS:
+Boomer Kuwanger remains 100% vanilla.
+
+BALANCE:
+Slight disadvantage.
+The tower is more active, but not substantially more lethal.
+
+===============================================================================
+10. STAGE SPECIFICATION: ARMORED ARMADILLO
+===============================================================================
+
+SOURCE:
+Boomer Kuwanger
+
+STATE:
+MINE REINFORCED
+
+TYPE:
+New CHAIN REACTION state.
+
+DESIGN LOGIC:
+Kuwanger's city tower serves as a Maverick base/command position.
+
+When that position falls, surviving mobile security units are redeployed to
+protect the strategically important mine.
+
+HISTORICAL WORDING:
+A community reference documents increased Metal Wing presence after Kuwanger's
+defeat, but broader references commonly identify only the three major retail
+environmental reactions.
+
+Therefore:
+
+CHAIN REACTION v1.0 deliberately implements the Metal Wing reinforcement.
+
+DO NOT market it as restored/cut Capcom content unless direct ROM tracing later
+proves a native conditional spawn.
+
+PRESENTATION:
+No new stage graphics required.
+
+Optional:
+Reuse an existing X1 status/alarm tile or palette variation near the exterior
+mine exit if technically trivial.
+
+This is polish only.
+
+ENEMIES:
+Preserve every vanilla enemy and placement.
+
+ONE EXCEPTION:
+Add ONE additional Metal Wing formation in the final outdoor minecart section.
+
+IMPLEMENTATION CONSTRAINTS:
+- use existing Metal Wing actor;
+- same HP;
+- same damage;
+- same speed;
+- same flight behavior;
+- duplicate a safe existing late-stage formation;
+- insert it into a gap rather than stacking it on another wave;
+- do not place it over the final mandatory jump;
+- do not place it over the Hadouken ledge;
+- do not increase simultaneous bird density enough to create an unavoidable
+  knock-off death.
+
+DO NOT ALTER:
+- Mole Borers;
+- minecart path;
+- minecart speed;
+- spikes;
+- Batton farming;
+- Heart Tank;
+- Sub Tank;
+- Hadouken conditions.
+
+BOSS:
+Armored Armadillo remains 100% vanilla.
+
+BALANCE:
+Slight disadvantage only during the late cart/exterior sequence.
+
+===============================================================================
+11. STAGE SPECIFICATION: LAUNCH OCTOPUS
+===============================================================================
+
+SOURCE:
+Armored Armadillo
+
+STATE:
+MUNITIONS SHORTAGE
+
+TYPE:
+New CHAIN REACTION state.
+
+DESIGN LOGIC:
+Armored Armadillo's mine supplies ore/minerals used for ammunition.
+
+Launch Octopus commands heavily armed marine forces.
+
+Destroying the mine reduces the ammunition flow reaching those forces.
+
+This reaction does NOT:
+- drain the ocean;
+- remove aquatic enemies;
+- alter water physics;
+- change the stage's geography.
+
+GRAPHICS:
+No new graphical state is required.
+
+Optional:
+If existing X1 rack/crate tiles can be rearranged into a visibly depleted
+background with zero new art and no VRAM cost, that may be added.
+
+Otherwise keep the stage visually retail.
+
+ENEMY ROSTER:
+Preserve every retail Ocean Stage enemy and miniboss in its normal position.
+
+AMMUNITION-DEPENDENT BEHAVIOR:
+
+MEGA TORTOISE
+- same HP;
+- same movement;
+- same placement;
+- same contact damage;
+- two-bomb/parachute-bomb volley becomes ONE bomb.
+
+CRUIZILER
+- same HP;
+- same flight;
+- same location;
+- same destruction/crash event;
+- same role in opening the lower secret route;
+- bomb-drop interval increased approximately 25%.
+
+UNCHANGED:
+- Amenhopper;
+- Sea Attacker;
+- Gulpfer;
+- Anglerge;
+- Utuboros;
+- whirlpools;
+- water physics;
+- spikes;
+- Heart Tank route;
+- Launch Octopus boss.
+
+WHY NOT NERF EVERYTHING WITH A PROJECTILE:
+The shortage must be noticeable without collapsing the entire stage challenge.
+
+BOSS:
+Launch Octopus remains 100% vanilla.
+
+BALANCE:
+Moderate advantage during regular combat.
+Traversal and major miniboss structure remain retail.
+
+===============================================================================
+12. STAGE SPECIFICATION: STING CHAMELEON
+===============================================================================
+
+SOURCE:
+Launch Octopus
+
+STATE:
+FLOODED FOREST
+
+TYPE:
+Retail Mega Man X1 behavior.
+
+DESIGN:
+Preserve exactly.
+
+EXPECTED RETAIL EFFECTS:
+- relevant low/outdoor area floods;
+- underground Heart Tank area floods;
+- water changes traversal;
+- existing Amenhoppers gain water movement.
+
+ENEMIES:
+Preserve the normal forest roster and placement.
+
+RT-55J remains unchanged.
+
+ITEMS:
+- Heart Tank behavior remains vanilla;
+- Body Parts route remains vanilla;
+- falling-rock logic remains vanilla.
+
+BOSS:
+Sting Chameleon remains 100% vanilla.
+
+BALANCE:
+Mostly advantageous but mechanically altered.
+
+===============================================================================
+13. STAGE SPECIFICATION: STORM EAGLE
+===============================================================================
+
+SOURCE:
+Sting Chameleon
+
+STATE:
+RECON NETWORK LOST
+
+TYPE:
+New CHAIN REACTION state.
+
+DESIGN LOGIC:
+Sting Chameleon is a Ranger/forward-defense unit.
+Storm Eagle commands an air squadron and Death Rogumer.
+
+CHAIN REACTION treats Chameleon's forest installation as one node in the
+Maverick reconnaissance/targeting network.
+
+When Chameleon is defeated:
+- the airport retains power;
+- the airport retains supplies;
+- its troops remain;
+- its platforms remain;
+- its weapons remain;
+- but automated targeting receives degraded information.
+
+PRESENTATION USING EXISTING X1 ASSETS:
+- reuse existing airport/control-panel tiles;
+- blank/darken selected existing displays using existing palette entries;
+- stop selected existing monitor/status animation if safe;
+- no new radar art;
+- no new antenna art;
+- no structural damage.
+
+ENEMIES:
+Keep every vanilla enemy in its normal position.
+
+TARGETING CHANGES:
+
+SKY CLAW
+- same placement;
+- same damage;
+- same committed movement speed;
+- approximately 15% longer initial acquisition/attack-initiation delay,
+  ONLY if a clean existing timing variable/hook exists.
+
+DEATH ROGUMER DECK CANNON(S)
+- same placement;
+- same projectile;
+- same damage;
+- approximately 15% longer firing interval.
+
+ALL OTHER ENEMIES
+- vanilla.
+
+FALLBACK RULE:
+If Sky Claw requires invasive AI reconstruction, do NOT modify it.
+
+In that case:
+- preserve Sky Claw completely;
+- use deck-cannon cadence plus inactive existing monitor/status visuals as the
+  altered state.
+
+Authenticity is more important than checking every proposed feature box.
+
+ITEMS:
+Heart Tank, Sub Tank, and Head Parts routes remain unchanged.
+
+BOSS:
+Storm Eagle remains 100% vanilla.
+
+BALANCE:
+Small advantage in targeting pressure.
+Platforming remains retail.
+
+===============================================================================
+14. FINAL DIFFICULTY BALANCE
+===============================================================================
+
+ALTERED STATE               RESULT
+-------------------------   -----------------------------------------------
+Frozen Factory              Major advantage, retail
+Thawing Snow Mountain       Small exploration advantage, neutral combat
+Power-Plant Blackout        Mixed advantage/disadvantage, retail
+Full-Power Tower            Slight disadvantage
+Mine Reinforced             Slight disadvantage
+Munitions Shortage          Moderate regular-combat advantage
+Flooded Forest              Mostly advantage, retail
+Recon Network Lost          Small combat advantage
+
+DESIGN PRINCIPLE:
+
+The five new reactions should generally be more restrained than the three
+largest retail reactions.
+
+Do not make every altered stage "better."
+Do not make every altered stage "harder."
+
+Stage order should produce consequences, not a universal optimal route.
+
+===============================================================================
+15. BOSS / WEAPON LOCK
+===============================================================================
+
+v1.0 preserves 100% retail behavior for:
+
+- all eight Maverick boss arenas;
+- boss HP;
+- boss attack damage;
+- boss AI;
+- boss weaknesses;
+- weapon rewards;
+- special-weapon energy costs;
+- boss weakness cycle;
+- Sigma-stage Maverick rematches.
+
+CHAIN REACTION is a stage-state project, not a boss rebalance.
+
+===============================================================================
+16. ITEM / UPGRADE LOCK
+===============================================================================
+
+No item is relocated in v1.0.
+
+Every valid boss order must retain access to all vanilla:
+
+CHILL PENGUIN
+- Foot Parts
+- Heart Tank
+
+SPARK MANDRILL
+- Heart Tank
+- Sub Tank
+
+ARMORED ARMADILLO
+- Heart Tank
+- Sub Tank
+- Hadouken
+
+LAUNCH OCTOPUS
+- Heart Tank
+
+BOOMER KUWANGER
+- Heart Tank
+
+STING CHAMELEON
+- Heart Tank
+- Body Parts
+
+STORM EAGLE
+- Heart Tank
+- Sub Tank
+- Head Parts
+
+FLAME MAMMOTH
+- Heart Tank
+- Sub Tank
+- Arm Parts
+
+No new weapon prerequisites.
+No permanently missable items.
+No reaction adds spikes, pits, crushing hazards, or instant-death geometry.
+
+===============================================================================
+17. STATE IMPLEMENTATION ARCHITECTURE
+===============================================================================
+
+Each stage reads exactly ONE Maverick defeat flag.
+
+Flame Mammoth     reads Chill Penguin flag
+Chill Penguin     reads Flame Mammoth flag
+Spark Mandrill    reads Storm Eagle flag
+Boomer Kuwanger   reads Spark Mandrill flag
+Armored Armadillo reads Boomer Kuwanger flag
+Launch Octopus    reads Armored Armadillo flag
+Sting Chameleon   reads Launch Octopus flag
+Storm Eagle       reads Sting Chameleon flag
+
+PSEUDO-LOGIC:
+
+    altered = boss_defeated(stage_reaction_source[target_stage])
+
+    if altered:
+        load_altered_stage_state()
+    else:
+        load_retail_stage_state()
+
+No combined-state table.
+No secondary triggers.
+No extra progression variable unless technically unavoidable.
+
+The altered state must reconstruct correctly from the existing progression
+flags after:
+- death/checkpoint reload;
+- stage exit and re-entry;
+- valid password restoration.
+
+===============================================================================
+18. PASSWORD / PERSISTENCE DESIGN
+===============================================================================
+
+Do not separately save "reaction state."
+
+The reaction is derived.
+
+Example:
+
+If the loaded password says Chill Penguin is defeated, Flame Mammoth must load
+its frozen state.
+
+If the loaded password says Flame Mammoth is defeated, Chill Penguin must load
+its thawed state.
+
+This principle applies to all eight stages.
+
+If the original password system already preserves the relevant Maverick defeat
+bits, no new password encoding should be introduced.
+
+Any implementation that requires separate reaction persistence is considered
+architecturally suspect and must be justified before acceptance.
+
+===============================================================================
+19. EXHAUSTIVE 256-FLAG REGRESSION MATRIX
+===============================================================================
+
+Eight Mavericks create:
+
+    2^8 = 256
+
+possible defeated/alive flag combinations.
+
+v1.0 must include an automated or scripted state test over all 256 combinations.
+
+FOR EVERY COMBINATION:
+
+Flame Mammoth state
+MUST depend ONLY on Chill Penguin.
+
+Chill Penguin state
+MUST depend ONLY on Flame Mammoth.
+
+Spark Mandrill state
+MUST depend ONLY on Storm Eagle.
+
+Boomer Kuwanger state
+MUST depend ONLY on Spark Mandrill.
+
+Armored Armadillo state
+MUST depend ONLY on Boomer Kuwanger.
+
+Launch Octopus state
+MUST depend ONLY on Armored Armadillo.
+
+Sting Chameleon state
+MUST depend ONLY on Launch Octopus.
+
+Storm Eagle state
+MUST depend ONLY on Sting Chameleon.
+
+NEGATIVE ASSERTION:
+
+Changing any of the other seven Maverick bits must NOT alter that target stage's
+normal/altered selection.
+
+This matrix is a core v1.0 acceptance test, not optional polish.
+
+===============================================================================
+20. NORMAL/ALTERED STAGE TEST PLAN
+===============================================================================
+
+For each of eight stages:
+
+A. Enter while source Maverick is alive.
+   Expected: retail normal state.
+
+B. Defeat source Maverick.
+   Re-enter target.
+   Expected: altered state.
+
+C. Die after checkpoint in altered state.
+   Expected: altered state persists.
+
+D. Exit and re-enter.
+   Expected: altered state remains correct.
+
+E. Restore a valid password with source Maverick defeated.
+   Expected: altered state reconstructs correctly.
+
+At minimum this creates sixteen primary normal/altered stage validation cases,
+plus persistence and password cases.
+
+===============================================================================
+21. ENEMY REGRESSION TESTS
+===============================================================================
+
+GLOBAL:
+- no enemy spawns inside solid terrain;
+- no unexpected object-slot overflow;
+- no broken despawn/respawn state;
+- no wrong sprite page;
+- no missing projectile art.
+
+FULL-POWER TOWER:
+- Ray Trap remains dodgeable;
+- Ray Trap does not fire before the player can reasonably react;
+- Slide Cannon remains usable as its intended platform after destruction;
+- faster cycle does not create a traversal softlock.
+
+MINE REINFORCED:
+- extra Metal Wing formation does not overlap an existing wave unfairly;
+- does not create unavoidable knockback during final cart jump;
+- does not block Hadouken ledge access;
+- object count remains safe.
+
+MUNITIONS SHORTAGE:
+- Mega Tortoise's one-bomb routine exits cleanly;
+- no orphan bomb slot remains;
+- Cruiziler still destroys/crashes correctly;
+- lower secret route still opens;
+- Heart Tank route still works.
+
+RECON NETWORK LOST:
+- Sky Claw, if modified, still completes its original attack/state sequence;
+- longer acquisition does not make it permanently passive;
+- Death Rogumer cannon timing does not interfere with boarding or ship events.
+
+===============================================================================
+22. GRAPHICS / VRAM / DMA REGRESSION
+===============================================================================
+
+"Existing X1 graphics only" still requires engineering validation.
+
+Before reusing an asset across stages verify:
+- VRAM slot;
+- tile index;
+- palette index;
+- sprite page;
+- DMA timing;
+- animation dependency;
+- object graphics dependency.
+
+TEST FOR:
+- corrupted tiles;
+- incorrect palettes;
+- X sprite corruption;
+- enemy sprite corruption;
+- tile-page conflict;
+- missing animation frame;
+- lingering cross-stage asset after stage exit;
+- wrong graphics after death/checkpoint reload;
+- wrong graphics after password load.
+
+If cross-stage water/steam reuse produces instability:
+remove the visual effect instead of increasing technical risk.
+
+===============================================================================
+23. SIGMA STAGE FIREWALL
+===============================================================================
+
+No CHAIN REACTION stage-state logic may propagate into Sigma Fortress stages.
+
+Test:
+- all Sigma stages;
+- all Maverick rematches;
+- boss teleport/rematch rooms;
+- post-Maverick progression;
+- ending.
+
+Maverick rematches remain retail even if the original source Maverick flag is
+of course already set.
+
+The reaction system applies only to the eight selectable Maverick stages.
+
+===============================================================================
+24. TITLE / UI / STORY LOCK
+===============================================================================
+
+Do NOT modify in v1.0:
+- title screen;
+- Capcom logo;
+- intro;
+- Stage Select screen;
+- Maverick portraits;
+- weapon-get screen;
+- dialogue;
+- ending;
+- credits.
+
+Do NOT add:
+- "Stage Altered" popup;
+- reaction icons;
+- tutorial message;
+- chain-reaction meter;
+- lore text explaining every connection.
+
+The patch/readme may call the project:
+
+    Mega Man X: CHAIN REACTION
+
+The ROM itself should boot and initially present like normal Mega Man X.
+
+The altered world is discovered through play.
+
+===============================================================================
+25. AUDIO
+===============================================================================
+
+All music remains retail.
+
+No new soundtrack is required.
+
+Optional reused X1 SFX may be used only if technically trivial:
+- steam/vent;
+- electrical hum;
+- alarm/status beep.
+
+Audio additions are not v1.0 blockers.
+
+===============================================================================
+26. NON-GOALS
+===============================================================================
+
+Do NOT add:
+- new Mavericks;
+- new weapons;
+- X2/X3 enemies;
+- new pixel art;
+- new stages;
+- new collectibles;
+- difficulty modes;
+- randomization;
+- alternate bosses;
+- boss rebalance;
+- Sigma-stage reactions;
+- reaction stacking;
+- story cutscenes;
+- explanatory UI;
+- new save system unless absolutely required by implementation.
+
+v1.0 succeeds by completing the existing design idea cleanly.
+
+===============================================================================
+27. IMPLEMENTATION TOOLING / APPROACH
+===============================================================================
+
+Recommended research/implementation foundation:
+- X1-specific disassembly;
+- current Mega Man X SNES recompilation as a source of documented runtime
+  behavior and addresses;
+- MegaED X for level/event/graphics inspection where useful;
+- bsnes-plus, Mesen-S, or equivalent debugger for runtime tracing;
+- scriptable ROM/hash validation;
+- automated state tests where possible.
+
+Implementation should prefer:
+1. existing retail stage-state mechanism;
+2. existing event/object state logic;
+3. minimal targeted ASM hooks;
+4. data-driven alternate layouts/events;
+5. ROM expansion only when necessary.
+
+Avoid building a completely separate reaction engine if the retail X1
+condition/event architecture can be extended.
+
+===============================================================================
+28. DISTRIBUTION
+===============================================================================
+
+Never distribute the copyrighted ROM.
+
+Release should contain:
+- patch;
+- README;
+- exact ROM hash requirements;
+- header-state requirement;
+- changelog;
+- credits;
+- optional technical notes.
+
+Patch format:
+Prefer BPS for strong source-ROM verification.
+IPS may be provided additionally only if desired, but BPS is the preferred
+release artifact for preventing accidental application to the wrong ROM.
+
+===============================================================================
+29. PLAYER EXPERIENCE TARGET
+===============================================================================
+
+The intended player reaction is:
+
+    "I remember this stage. Why is it different?"
+
+Then:
+
+    "Oh. I killed THAT Maverick."
+
+The world should explain itself:
+
+Penguin falls
+-> Mammoth's factory freezes.
+
+Mammoth falls
+-> Snow Mountain's industrial area thaws.
+
+Eagle falls
+-> his ship wrecks Mandrill's power plant.
+
+Mandrill falls
+-> city power returns and Kuwanger's tower fully wakes.
+
+Kuwanger falls
+-> Armadillo's strategic mine receives an extra Metal Wing patrol.
+
+Armadillo falls
+-> Octopus's marine forces conserve ammunition.
+
+Octopus falls
+-> Chameleon's forest floods.
+
+Chameleon falls
+-> Eagle's automated targeting loses part of its recon support.
+
+No text box is necessary.
+
+===============================================================================
+30. FINAL ACCEPTANCE CHECKLIST
+===============================================================================
+
+ROM BASELINE
+[ ] Mega Man X (USA) Rev 1 verified.
+[ ] ROM is unheadered.
+[ ] CRC32 verified: DED53C64.
+[ ] SHA-1 or SHA-256 verified.
+
+SYSTEM
+[ ] Three retail reactions preserved.
+[ ] Five new reactions implemented.
+[ ] Every Maverick affects exactly one stage.
+[ ] Every Maverick stage has exactly one source Maverick.
+[ ] Every stage has exactly two states.
+[ ] No compound states.
+
+ART
+[ ] 100% existing Mega Man X1 graphics.
+[ ] No new pixel art.
+[ ] No X2/X3 graphics.
+[ ] No VRAM/tile/palette corruption.
+
+ENEMIES
+[ ] No new enemy species.
+[ ] Vanilla placements preserved except one Metal Wing formation.
+[ ] Boomer Full-Power timing remains fair.
+[ ] Launch ammunition changes remain stable.
+[ ] Storm targeting changes remain stable or use fallback.
+
+BOSSES
+[ ] All Maverick fights remain retail.
+[ ] Weaknesses unchanged.
+[ ] Damage unchanged.
+[ ] Sigma rematches unchanged.
+
+ITEMS
+[ ] Every Heart Tank obtainable.
+[ ] Every Sub Tank obtainable.
+[ ] Every armor capsule obtainable.
+[ ] Hadouken obtainable.
+[ ] No new item missability.
+
+PERSISTENCE
+[ ] Checkpoint reload reconstructs reaction state.
+[ ] Stage re-entry reconstructs reaction state.
+[ ] Password load reconstructs reaction state.
+[ ] No separately saved reaction variable unless unavoidable.
+
+EXHAUSTIVE STATE VALIDATION
+[ ] All 256 Maverick defeated/alive combinations tested.
+[ ] Each stage responds only to its designated source Maverick.
+[ ] Other seven bits cannot accidentally affect that stage.
+
+REGRESSION
+[ ] No stage-order softlock.
+[ ] No object-slot overflow.
+[ ] No Sigma-stage regression.
+[ ] No ending regression.
+
+RELEASE
+[ ] Final patch built against verified Rev 1 baseline.
+[ ] BPS source verification succeeds.
+[ ] README documents exact required hashes.
+[ ] No ROM included.
+
+===============================================================================
+31. DESIGN FREEZE
+===============================================================================
+
+This document defines Mega Man X: CHAIN REACTION v1.0 FINAL.
+
+The feature set is frozen.
+
+Do not add additional reactions, bosses, enemies, art, UI, stages, difficulty
+modes, or story systems during v1.0 implementation unless required to fix a
+verified technical blocker.
+
+The goal is not to make Mega Man X bigger.
+
+The goal is to finish one of the ideas already inside Mega Man X:
+
+    STAGE ORDER CHANGES THE WORLD.
+
+END OF MEGA MAN X: CHAIN REACTION v1.0 FINAL

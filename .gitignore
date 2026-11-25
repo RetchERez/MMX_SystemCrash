@@ -1,0 +1,28 @@
+# Your ROM and everything derived from it stays private (never committed)
+rom_private/
+build/
+audit_output/
+*.sfc
+*.smc
+*.state
+*.srm
+
+# Screenshots and renders are ROM-derived
+*.png
+
+# Third-party tools and reference repos (fetched separately; see BUILD.md).
+# Only the portable Mesen settings used by tests/mesen_check.py are tracked.
+tools/vendor/*
+!tools/vendor/mesen2/
+tools/vendor/mesen2/*
+!tools/vendor/mesen2/settings.json
+research_repos/
+
+# Packaged ZIPs are rebuilt by tools/release.py
+release/*.zip
+
+# Throwaway investigation scripts
+scratch/
+
+__pycache__/
+*.pyc

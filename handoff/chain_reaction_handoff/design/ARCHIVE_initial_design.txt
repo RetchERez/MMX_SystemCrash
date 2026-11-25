@@ -1,0 +1,415 @@
+MEGA MAN X: CHAIN REACTION
+FINAL v1.0 DESIGN SPECIFICATION
+Target: Mega Man X / Rockman X (SNES, 1993)
+Scope: Mega Man X1 only
+
+1. PROJECT GOAL
+Mega Man X: CHAIN REACTION expands the real X1 system where defeating one Maverick can alter another Maverick's stage.
+
+Retail X1 already confirms:
+- Chill Penguin -> Flame Mammoth: molten terrain freezes.
+- Storm Eagle -> Spark Mandrill: Death Rogumer damages the power plant, causing blackouts, disabling electrical floor hazards, and removing Thunder Slimer's lightning attack.
+- Launch Octopus -> Sting Chameleon: portions of the forest flood, changing traversal and letting existing Amenhoppers exploit the water.
+
+v1.0 rule:
+- Every Maverick affects exactly ONE other Maverick stage.
+- Every Maverick stage is affected by exactly ONE Maverick.
+- Every stage has exactly TWO states: normal and altered.
+- No compound or stacked reaction states.
+- Boss fights and weapons remain vanilla.
+
+FINAL REACTION MAP
+Chill Penguin      -> Flame Mammoth
+Flame Mammoth      -> Chill Penguin
+Storm Eagle        -> Spark Mandrill
+Spark Mandrill     -> Boomer Kuwanger
+Boomer Kuwanger    -> Armored Armadillo
+Armored Armadillo  -> Launch Octopus
+Launch Octopus     -> Sting Chameleon
+Sting Chameleon    -> Storm Eagle
+
+2. VANILLA ENEMY-DESIGN RULE
+The confirmed retail reactions establish the model for enemy handling.
+
+Capcom generally does NOT replace the enemy roster when a stage changes.
+Instead it:
+- changes terrain/hazards around the same encounters;
+- changes an existing enemy or miniboss only when the altered environment directly affects it;
+- lets existing enemies exploit the new environment.
+
+Examples:
+- Frozen Flame Mammoth keeps the factory's normal enemy cast.
+- Spark Mandrill keeps its normal enemies, but Thunder Slimer loses the electricity-dependent lightning attack.
+- Flooded Sting Chameleon keeps its normal cast, but existing Amenhoppers gain water to move through.
+
+CHAIN REACTION follows that philosophy.
+
+Global enemy rules:
+- No X2/X3 enemies.
+- No invented enemy species.
+- No substitutions merely for variety.
+- Preserve vanilla placement unless the reaction itself is a reinforcement.
+- Prefer terrain, hazard state, timing, or native AI changes.
+- No reaction changes a Maverick boss battle.
+- The sole deliberate enemy-count increase in v1.0 is one extra Metal Wing formation in Armored Armadillo.
+
+3. FLAME MAMMOTH - FROZEN FACTORY
+Source: Chill Penguin
+Status: retail X1 behavior.
+
+Preserve:
+- frozen/safe former molten floor;
+- all normal factory enemy positions and AI;
+- all item routes;
+- Flame Mammoth boss unchanged.
+
+Enemy handling:
+No additions, removals, relocation, or AI changes. Keep Scrap/Scrap Robo, Dig Labour, Rolling Gabyoall, Metall C-15, Hoganmer, Sky Claw and native stage objects as in retail.
+
+Balance:
+Major advantage to X, intentionally retail-authentic.
+
+4. CHILL PENGUIN - THAWING SNOW MOUNTAIN
+Source: Flame Mammoth
+Status: new.
+
+New physical explanation:
+CHAIN REACTION visually establishes a heat-exchange/industrial coolant connection between Snow Mountain's missile-base infrastructure and Flame Mammoth's weapons factory. After Mammoth's factory is destroyed, its emergency shutdown sends stored heat/hot coolant through the return side of the system, causing LOCALIZED thaw around the base.
+
+Visual changes:
+- receding snow around machinery;
+- exposed wet rock;
+- dripping/shortened icicles;
+- steam or hot-coolant venting;
+- small runoff streams and meltwater;
+- visibly thawed industrial structures;
+- the Heart Tank shelter that normally requires Fire Wave is already melted open.
+
+Do NOT add slippery or less-slippery physics. X1 Snow Mountain does not use slippery-floor physics.
+
+Enemy handling:
+No additions, removals, relocation, or AI changes. Preserve all normal Ray Bit, Bomb Been, Axe Max, Batton Bone, Spiky, Flammingle, Jamminger, Tombot, Armor Soldier and other native placements.
+
+Items:
+- Foot Parts unchanged.
+- Heart Tank stays in its exact vanilla location.
+- The shelter opens because Mammoth is defeated, preserving the same progression condition that normally gives X Fire Wave.
+
+Balance:
+Neutral combat, modest exploration advantage.
+
+5. SPARK MANDRILL - POWER-PLANT BLACKOUT
+Source: Storm Eagle
+Status: retail X1 behavior.
+
+Preserve:
+- Death Rogumer wreckage/damaged presentation;
+- electrical floor/glass-pipe hazards disabled;
+- blackout/dimming behavior;
+- Thunder Slimer cannot use its electricity-dependent lightning attack.
+
+Enemy handling:
+All regular placements remain vanilla. Keep Gun Volt, Hotarion, Flammingle, Turn Cannon and all other normal enemies. Hotarions remain especially useful as moving light sources during blackouts.
+
+Balance:
+Mixed. Electrical danger and Thunder Slimer are easier; visibility is worse.
+
+6. BOOMER KUWANGER - FULL-POWER TOWER
+Source: Spark Mandrill
+Status: new.
+
+Basis:
+Spark Mandrill has seized the city's electrical power stations and brought the city to a halt. Boomer Kuwanger has taken the city's tower and is converting it into a base. Defeating Spark lets city power distribution recover, which also fully energizes the occupied tower.
+
+Visual changes:
+- more tower lights active;
+- powered status indicators;
+- active machinery/elevator lights;
+- brighter Ray Trap sensor hardware;
+- no new rooms or installations.
+
+Enemy handling:
+Keep all vanilla placements: Hoganmer, Dodge Blaster, Sine Faller, Ray Trap, Mega Tortoise, Jamminger, Ladder Yadder, Slide Cannon, Turn Cannon, etc.
+
+Only clearly powered defenses change:
+- Ray Trap: same position, damage and sensor geometry; trigger-to-shot delay reduced about 15-20%.
+- Slide Cannon: same position, HP and damage; firing/platform cycle about 10% faster.
+- All other enemies remain vanilla unless playtesting proves the state is too subtle.
+
+Do not move lasers or alter Heart Tank access.
+
+Balance:
+Slightly harder than retail, not a major difficulty spike.
+
+7. ARMORED ARMADILLO - MINE REINFORCED
+Source: Boomer Kuwanger
+Status: new.
+
+Basis:
+Kuwanger's tower is a Maverick base. Its fall causes remaining mobile security units to consolidate around the strategically important mine.
+
+Community note:
+StrategyWiki documents many more Metal Wings near the end of Armored Armadillo's stage after Boomer Kuwanger is defeated, while broader X1 references often list only the three major environment changes. v1.0 therefore implements the reinforcement intentionally but does not market it as proven restored Capcom content unless direct ROM verification later confirms it.
+
+Visual changes:
+- alarm/security indicators near the mine exit;
+- no traversal changes.
+
+Enemy handling:
+All vanilla enemies and placements remain.
+
+One exception:
+- Add ONE additional Metal Wing formation in the final outdoor minecart sequence.
+- Reuse retail Metal Wing HP, damage, speed and trajectory.
+- Duplicate an existing late-stage formation into a safe gap between waves.
+- Do not place it on the final jump arc or Hadouken ledge.
+- Do not increase simultaneous pressure enough to create unavoidable knock-off deaths.
+
+Do not alter:
+- either Mole Borer;
+- minecart speed/path;
+- spikes;
+- Batton M-501 farming;
+- Heart Tank;
+- Sub Tank;
+- Hadouken route.
+
+Balance:
+Slightly harder only in the final cart/outdoor segment.
+
+8. LAUNCH OCTOPUS - MUNITIONS SHORTAGE
+Source: Armored Armadillo
+Status: new.
+
+Basis:
+Capcom's official Maverick Hunter X profile states Armored Armadillo requires mined ore and minerals for ammunition. Launch Octopus commands a heavily armed marine force. Destroying the mine reduces ammunition flow, but does not change the ocean or remove marine units.
+
+Visual changes:
+- depleted/empty torpedo or ammunition racks;
+- no new collision objects.
+
+Enemy handling:
+Keep every vanilla placement and miniboss:
+Amenhopper, Mega Tortoise, Sea Attacker, Anglerge, Gulpfer, Cruiziler, Utuboros, etc.
+
+Ammo-dependent behavior:
+- Mega Tortoise: its two-bomb/parachute-bomb volley becomes ONE bomb. HP, movement, contact damage and placement unchanged.
+- Cruiziler: same HP, position, flight and required crash event; bomb-drop interval about 25% slower.
+
+Unchanged:
+- Amenhopper;
+- Sea Attacker;
+- Gulpfer;
+- Anglerge;
+- Utuboros;
+- whirlpool generators;
+- water physics;
+- spike geometry;
+- Heart Tank route;
+- Launch Octopus boss.
+
+Balance:
+Moderately easier regular combat while keeping the miniboss gauntlet and traversal intact.
+
+9. STING CHAMELEON - FLOODED FOREST
+Source: Launch Octopus
+Status: retail X1 behavior.
+
+Preserve:
+- flooded low/outdoor section;
+- flooded underground Heart Tank area;
+- water-enabled Heart Tank traversal;
+- existing Amenhoppers gain water movement.
+
+Enemy handling:
+No broad roster changes. Preserve Amenhopper, Planty/Iworm, Axe Max, Crag Man, Mad Pecker, Creeper, Jamminger, Armor Soldier and native encounters. RT-55J remains unchanged.
+
+Balance:
+Mostly advantageous, with altered Amenhopper movement.
+
+10. STORM EAGLE - RECON NETWORK LOST
+Source: Sting Chameleon
+Status: new.
+
+Basis:
+Capcom describes Sting Chameleon as a Ranger and first line of defense for the forest base, while Storm Eagle commands the 7th Air Squadron and a new air destroyer. CHAIN REACTION treats the forest base as a forward reconnaissance/tracking node. When Chameleon is defeated, the airport keeps its power, weapons and troops but loses part of its automated target-acquisition support.
+
+Visual changes:
+- radar/sensor displays show static or blank readouts;
+- selected antenna/status indicators inactive;
+- no structural destruction;
+- Death Rogumer remains intact.
+
+Enemy handling:
+Keep every vanilla enemy in place: Sky Claw, Hoganmer, Lift Cannon, Gun Volt, Flamer, Metall C-15, Ball De Voux, Death Rogumer deck cannons, etc.
+
+Targeting changes:
+- Sky Claw: same placement, damage and committed movement speed; initial attack/acquisition delay about 15% longer.
+- Death Rogumer deck cannon(s): same placement, projectile and damage; firing interval about 15% longer.
+- Gun Volt, Flamer, Lift Cannon, Hoganmer, Metall C-15, Ball De Voux and moving platforms unchanged.
+
+Fallback:
+If Sky Claw lacks a clean acquisition-delay hook, keep it retail. Do not rewrite the enemy from scratch. Apply the state through Death Rogumer cannon timing and visual radar failure instead.
+
+Boss:
+Storm Eagle unchanged.
+
+Balance:
+Slightly easier targeting pressure; platforming unchanged.
+
+11. FINAL BALANCE TABLE
+Frozen Factory            - major advantage, retail
+Thawing Snow Mountain     - small exploration advantage, neutral combat
+Power-Plant Blackout      - mixed, retail
+Full-Power Tower          - slight disadvantage
+Mine Reinforced           - slight disadvantage
+Munitions Shortage        - moderate regular-combat advantage
+Flooded Forest            - mostly advantage, retail
+Recon Network Lost        - small combat advantage
+
+The five new reactions should remain more restrained than the three most dramatic retail reactions.
+
+12. BOSS/WEAPON RULES
+Keep 100% vanilla:
+- all eight Maverick arenas;
+- boss HP;
+- boss damage;
+- boss AI;
+- weaknesses;
+- weapon rewards;
+- weapon energy costs;
+- weakness cycle;
+- Sigma rematches.
+
+13. ITEM SAFETY
+Do not move any item.
+
+Every valid boss order must still permit:
+- Chill Penguin: Foot Parts, Heart Tank
+- Spark Mandrill: Heart Tank, Sub Tank
+- Armored Armadillo: Heart Tank, Sub Tank, Hadouken
+- Launch Octopus: Heart Tank
+- Boomer Kuwanger: Heart Tank
+- Sting Chameleon: Heart Tank, Body Parts
+- Storm Eagle: Heart Tank, Sub Tank, Head Parts
+- Flame Mammoth: Heart Tank, Sub Tank, Arm Parts
+
+No new weapon prerequisites.
+No permanently missable items.
+No reaction adds spikes, pits, crushing hazards, or new instant-death geometry.
+
+14. STATE IMPLEMENTATION
+Each target stage reads exactly one existing Maverick defeat flag at stage load.
+
+Flame Mammoth     reads Chill Penguin flag
+Chill Penguin     reads Flame Mammoth flag
+Spark Mandrill    reads Storm Eagle flag
+Boomer Kuwanger   reads Spark Mandrill flag
+Armored Armadillo reads Boomer Kuwanger flag
+Launch Octopus    reads Armored Armadillo flag
+Sting Chameleon   reads Launch Octopus flag
+Storm Eagle       reads Sting Chameleon flag
+
+No secondary table.
+No combined states.
+No extra campaign variable unless technically unavoidable.
+
+Altered state must persist on:
+- death/checkpoint reload;
+- stage re-entry;
+- password-loaded progress.
+
+15. VISUAL/AUDIO RULES
+All new graphics must look native to X1 SNES.
+No X2/X3 art.
+No modern lighting effects.
+No new music required.
+
+Optional existing X1 sound reuse:
+- thawing steam/vent sound;
+- full-power electrical hum;
+- mine alarm beep.
+
+Audio polish is not a v1.0 blocker.
+
+16. TEST PLAN
+For each of 8 stages:
+A. Enter with source boss alive -> retail normal state.
+B. Defeat source boss -> target altered state.
+C. Die after checkpoint -> altered state persists.
+D. Exit/re-enter -> correct state.
+E. Load valid password with source boss defeated -> altered state reconstructs.
+
+Regression:
+- all Heart Tanks;
+- all Sub Tanks;
+- all armor capsules;
+- Hadouken repeated-visit condition;
+- Flame Mammoth Arm Parts route;
+- Chill Penguin forced Foot Parts route;
+- no enemy inside terrain;
+- no object-slot overflow from Metal Wing reinforcement;
+- no unfair final minecart knock-off;
+- Ray Trap/Slide Cannon timing remains dodgeable;
+- Mega Tortoise single-bomb routine terminates correctly;
+- Cruiziler still opens the secret route;
+- Sky Claw still completes its normal state machine;
+- no Sigma-stage changes;
+- all Maverick fights remain vanilla.
+
+17. ROM/PATCH SAFETY
+Before coding:
+- identify exact Mega Man X ROM revision;
+- verify headered/headerless state;
+- record checksum/hash;
+- build/test only against that baseline;
+- distribute patch only, never ROM;
+- never reuse offsets across revisions without verification.
+
+18. NON-GOALS
+No new Mavericks.
+No new weapons.
+No X2/X3 enemies.
+No randomization.
+No extra reaction meter/UI.
+No stacked states.
+No Sigma reaction system.
+No boss rebalancing.
+No new collectibles.
+No story cutscenes explaining the system.
+
+19. PLAYER EXPERIENCE TARGET
+The player should notice a changed stage and infer the cause:
+
+Penguin falls -> Mammoth's factory freezes.
+Mammoth falls -> Snow Mountain's industrial zone thaws.
+Eagle falls -> his ship wrecks Mandrill's power plant.
+Mandrill falls -> the city's power returns and Kuwanger's occupied tower fully wakes.
+Kuwanger falls -> Armadillo's strategic mine is reinforced.
+Armadillo falls -> Octopus's marine force begins conserving ammunition.
+Octopus falls -> Chameleon's forest floods.
+Chameleon falls -> Eagle loses part of his recon/targeting network.
+
+No explanatory text is required.
+
+20. RESEARCH DISTINCTION
+Confirmed retail facts and official Capcom profile information are the factual basis.
+The five new reactions are CHAIN REACTION design decisions. They are NOT claimed to be lost Capcom content.
+
+FINAL v1.0 ACCEPTANCE
+[ ] Three retail reactions preserved.
+[ ] Five new one-to-one reactions implemented.
+[ ] Exactly one alternate state per Maverick stage.
+[ ] No compound states.
+[ ] No new enemy species.
+[ ] Only Armored Armadillo adds an enemy formation.
+[ ] Bosses remain vanilla.
+[ ] All items remain obtainable.
+[ ] Hadouken remains obtainable.
+[ ] Password state reconstructs correctly.
+[ ] No stage-order softlock.
+[ ] All 16 normal/altered stage cases tested.
+[ ] No Sigma-stage regression.
+[ ] Patch built only for verified ROM/hash/header state.
+
+END OF MEGA MAN X: CHAIN REACTION v1.0 FINAL DESIGN

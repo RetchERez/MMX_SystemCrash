@@ -1,0 +1,18 @@
+DESIGN ORACLE: generated and checked for one-to-one mapping and single-bit isolation.
+ROM audit utility: Python syntax checked. Not run on the actual ROM in this session.
+Actual ROM patches: NONE.
+Emulator validation: NONE.
+
+Required runtime evidence before release:
+- 256 boss masks, 8 target stage selections each, compare with expected_256_states.csv
+- Normal + altered stage screenshots and object/event traces
+- All five new reactions visible or mechanically demonstrable
+- Native three interactions preserved
+- Re-entry, checkpoints, passwords, pre-clear/revisit behavior
+- All collectibles and Hadouken, boss fights, Sigma stages, ending
+- Stage-scoped actor gating, no unrelated enemy changes, no graphics corruption
+- BPS roundtrip and source CRC verification
+
+Record baseline ROM hash, emulator version, input sequence, relevant RAM values,
+actual observed result, expected result, and pass/fail for each test.
+Do not confuse oracle assertions with execution of the patched ROM.

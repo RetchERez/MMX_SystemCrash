@@ -1,0 +1,22 @@
+MEGA MAN X: CHAIN REACTION - CLAUDE CODE HANDOFF
+
+Goal: implement the frozen v1.0 design as an actual SNES BPS ROM patch.
+Design is complete. Implementation is NOT complete. No playable patch has
+been produced or emulator-certified in the conversation. This ZIP is a
+research and development handoff, not a game release.
+
+1. Extract this ZIP to a local working folder.
+2. Put your legally obtained Mega Man X (U) (V1.1).zip, SFC or SMC there.
+   The ROM is intentionally not included in this archive.
+3. Open that folder in Claude Code, paste CLAUDE_CODE_PROMPT.txt.
+4. Run tools/audit_rom.py with your ROM path and --out audit_output.
+5. Read design/FINAL_v1.0.txt and research/IMPLEMENTATION_NOTES.md.
+
+The two ARCHIVE_ documents preserve previous work for reference. Where
+anything conflicts, FINAL_v1.0 and the implementation constraints in this
+handoff govern. Engineering hypotheses must be verified before patching.
+
+Included utilities are read-only ROM inspection and a generated expected
+state matrix. They are not an implementation of the five new reactions.
+The uploaded ROM was previously described as headered USA Rev 1; its bytes
+are not present in this handoff environment, so verify that claim locally.
