@@ -41,6 +41,7 @@ endmacro
 %assert_free($86FAE0, $0120)
 %assert_free($84FD00, $0040)	; Radar Down: airport lights hook
 %assert_free($84FD40, $0040)	; Empty Arsenal: volley counter
+%assert_free($84FD80, $0040)	; Ambush: Batton spawn gate
 %assert_free($85B4A0, $0020)	; Radar Down: row 1 with the lights off
 
 incsrc "core.asm"

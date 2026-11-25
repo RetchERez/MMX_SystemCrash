@@ -79,8 +79,8 @@ def sweep(path, tag):
     m.close(); return out
 V = sweep(VANILLA, 'v'); R = sweep(ROMP, 'p')
 # Placements whose own appearance depends on how many of their kind are already around (verified in vanilla):
-KNOWN = {('SkyClaw', 4848): 'the game spawns this crane only when fewer cranes are present; from checkpoint 1 it does not '
-                            'appear in vanilla either, and in Radar Down the dead crane hanging at x 4571 keeps one present'}
+KNOWN = {('SkyClaw', 4848): 'whether the game spawns this crane depends on timing and route; from checkpoint 1 it does '
+                            'not appear in vanilla either (verified), so it is not a placement the patch removes'}
 fails = 0; summary = {}
 for (name, mask, ex, ey), (sp, al, cp, met) in R.items():
     vsp, val, vcp, vmet = V[(name, mask, ex, ey)]

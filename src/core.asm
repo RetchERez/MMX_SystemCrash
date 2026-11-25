@@ -61,6 +61,15 @@ CR_Altered:
 ; here (A reloaded by the replaced instruction, X set at $80:B547).
 ; ---------------------------------------------------------------------------
 CR_PalHook:
+	lda.l $7E1F7A		; quick exit for every stage without a new palette (A is dead here)
+	and #$00FF
+	cmp #$0007
+	beq .check
+	cmp #$0005
+	beq .check
+	cmp #$0001
+	bne .orig
+.check:
 	jsl CR_Altered
 	bcc .orig
 	lda.l $7E1F7A
@@ -154,6 +163,14 @@ org $84F300
 CR_PostLoad:			; touches only A/X/Y (free here), $0B92-$0B97 and the blockMap
 	php
 	rep #$30
+	lda.l $7E1F7A		; quick exit for every stage without a map retarget
+	and #$00FF
+	cmp #$0005
+	beq .check
+	cmp #$0001
+	beq .check
+	jmp .done
+.check:
 	jsl CR_Altered
 	bcs .altered
 	jmp .done

@@ -75,7 +75,7 @@ SHA-1: C65216760BA99178100A10D98457CF11496C2097
 The patch refuses any other ROM. A file of 1,573,376 bytes has a 512-byte
 copier header; remove it first.
 
-After patching: 2,097,152 bytes (2 MB), CRC32 2AE334B3.
+After patching: 2,097,152 bytes (2 MB), CRC32 2FCD2B72.
 
 
 HOW TO PATCH
