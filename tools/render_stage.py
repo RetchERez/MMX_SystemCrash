@@ -35,10 +35,11 @@ def decode_tile(vram, n):
     return px
 
 
-def render(rom, stage, grid, vram, pal, out, collision_overlay=False, scale=1, labels=True):
+def render(rom, stage, grid, vram, pal, out, collision_overlay=False, scale=1, labels=True, map_ptr=None):
+    """map_ptr: the live level-map pointer (WRAM $0B95, 24-bit) for stages that load their own map copy"""
     ps = d.pc(ptr24(rom, 0x868D93 + stage * 3))
     pb = d.pc(ptr24(rom, 0x868E02 + stage * 3))
-    pm = d.pc(ptr24(rom, 0x868E71 + stage * 3))
+    pm = d.pc(map_ptr if map_ptr else ptr24(rom, 0x868E71 + stage * 3))
     pcol = d.pc(ptr24(rom, 0x868EE0 + stage * 3))
     cols = [((c & 31) * 255 // 31, ((c >> 5) & 31) * 255 // 31, ((c >> 10) & 31) * 255 // 31) for c in
             (pal[2 * i] | pal[2 * i + 1] << 8 for i in range(128))]

@@ -4,7 +4,7 @@ build/sweep/<stage>_<part>.png, 4 pairs per row, 8 rows per sheet."""
 import sys; sys.path.insert(0, 'tools')
 from mmx import *
 from PIL import Image
-ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'
+ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
 rom = VANILLA.read_bytes(); P = 0x0BA8
 STAGES = [('meltdown', 8, 0x08, 0, 0, 1 << 16), ('grid_down', 7, 0x20, 0, 0, 1 << 16), ('radar_down', 5, 0x40, 0, 0, 1 << 16),
           ('empty_arsenal', 1, 0x04, 0, 0, 4352), ('empty_arsenal_cp1', 1, 0x04, 1, 4608, 7168), ('empty_arsenal_cp2', 1, 0x04, 2, 7168, 1 << 16),

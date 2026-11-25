@@ -1,6 +1,6 @@
 #!/bin/bash
 # Full v1.0 QA run. usage: tests/run_all.sh build/<rom>.sfc  (logs to build/qa/)
-ROM=$1; export CR_ROM=$ROM; mkdir -p build/qa build/matrix
+ROM=$1; export SC_ROM=$ROM; mkdir -p build/qa build/matrix
 for s in 1 2 3 4 5 6 7 8; do timeout 7200 python -u tests/matrix.py $s $ROM build/matrix/stage$s.json > build/matrix/stage$s.log 2>&1 & done
 (
 for t in test_grid_down test_grid_down_traps test_grid_down_farbeam test_grid_down_cannon test_radar_down_turrets test_radar_down_claws test_empty_arsenal test_ambush test_meltdown test_sigma; do  # each test prints its own verdict lines

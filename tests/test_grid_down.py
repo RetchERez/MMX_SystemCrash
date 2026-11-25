@@ -2,7 +2,7 @@
 import sys; sys.path.insert(0,'tools')
 from mmx import *
 from PIL import Image, ImageDraw
-import os; ROM=Path(os.environ.get('CR_ROM', ROOT/'build/grid_down_test.sfc')); rom=VANILLA.read_bytes()
+import os; ROM=Path(os.environ.get('SC_ROM', ROOT/'build/grid_down_test.sfc')); rom=VANILLA.read_bytes()
 m=MMX(ROM, rt=ROOT/'build/runtime_test')
 pw=make_password_state(m)   # password screen state from the PATCHED rom
 def pal(): return m.read(0x0300,0x200)

@@ -5,7 +5,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'tools'))
 from libretro_frontend import LibretroFrontend  # noqa: E402
 
-CORE = Path(os.environ.get('CR_CORE', ROOT / 'tools/vendor/snes9x/snes9x_libretro.dll'))  # CR_CORE: second emulator
+CORE = Path(os.environ.get('SC_CORE', ROOT / 'tools/vendor/snes9x/snes9x_libretro.dll'))  # SC_CORE: second emulator
 VANILLA = ROOT / 'rom_private/Mega Man X (USA) (Rev 1).sfc'
 
 # weapon/defeat bytes, stage id order 1..8

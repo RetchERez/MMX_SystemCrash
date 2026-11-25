@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; CR_Altered: is the current stage in its CHAIN REACTION altered state?
+; SC_Altered: is the current stage in its SYSTEM CRASH altered state?
 ;   In : any M/X width, any DB/DP.
 ;   Out: carry set = altered. A, X, Y, DB, DP and every other flag preserved.
 ;   Only the five NEW links are answered here; the three retail links keep
@@ -14,7 +14,7 @@
 ;   stage 08 Chill Penguin     <- Flame Mammoth    ($1F8E)  Meltdown
 ; ---------------------------------------------------------------------------
 org $84F200
-CR_Altered:
+SC_Altered:
 	php
 	sep #$20		; 8-bit A only; X/Y untouched
 	pha
@@ -60,7 +60,7 @@ CR_Altered:
 ; Entry state at $80:B512 (verified): M=0, X=0, DP=$0000. A and X are dead
 ; here (A reloaded by the replaced instruction, X set at $80:B547).
 ; ---------------------------------------------------------------------------
-CR_PalHook:
+SC_PalHook:
 	lda.l $7E1F7A		; quick exit for every stage without a new palette (A is dead here)
 	and #$00FF
 	cmp #$0007
@@ -70,7 +70,7 @@ CR_PalHook:
 	cmp #$0001
 	bne .orig
 .check:
-	jsl CR_Altered
+	jsl SC_Altered
 	bcc .orig
 	lda.l $7E1F7A
 	and #$00FF
@@ -81,11 +81,11 @@ CR_PalHook:
 	cmp #$0001
 	beq .octo
 	bra .orig
-.kuw:	lda.w #(CR_KuwSlots&$FFFF)-$A260-$006A
+.kuw:	lda.w #(SC_KuwSlots&$FFFF)-$A260-$006A
 	bra .set
-.eagle:	lda.w #(CR_EagleSlots&$FFFF)-$A260-$004C
+.eagle:	lda.w #(SC_EagleSlots&$FFFF)-$A260-$004C
 	bra .set
-.octo:	lda.w #(CR_OctoSlots&$FFFF)-$A260-$0022
+.octo:	lda.w #(SC_OctoSlots&$FFFF)-$A260-$0022
 .set:
 	sta $02
 .orig:
@@ -98,7 +98,7 @@ org $80B512
 	%assert_bytes($80B512, $AD, $0A, $1F)
 	assert read1($80B515) == $29
 	assert read2($80B516) == $00FF
-	jsl CR_PalHook
+	jsl SC_PalHook
 	nop
 	nop
 
@@ -123,30 +123,30 @@ org $80BB0F
 org $80FC00
 CR80_PostLoad:
 	jsr $BC5C		; replaced: retail stage reactions
-	jsl CR_PostLoad
+	jsl SC_PostLoad
 	rts
 
 macro retarget_stage(stage, name)
 	cmp #<stage>
 	bne ?next
-	lda.w #CR_<name>Maps&$FFFF
+	lda.w #SC_<name>Maps&$FFFF
 	sta.l $7E0B95
-	lda.w #CR_<name>Coll&$FFFF
+	lda.w #SC_<name>Coll&$FFFF
 	sta.l $7E0B92
 	sep #$20
-	lda.b #CR_<name>Maps>>16
+	lda.b #SC_<name>Maps>>16
 	sta.l $7E0B97
-	lda.b #CR_<name>Coll>>16
+	lda.b #SC_<name>Coll>>16
 	sta.l $7E0B94
 	rep #$20
 	ldy #$0000		; walk (blockMap offset, new map index) pairs; long addressing only
 ?loop:
 	tyx
-	lda.l CR_<name>Retarget,x
+	lda.l SC_<name>Retarget,x
 	cmp #$FFFF
 	beq ?done
 	pha
-	lda.l CR_<name>Retarget+2,x
+	lda.l SC_<name>Retarget+2,x
 	plx
 	sta.l $7E2000,x
 	iny
@@ -160,7 +160,7 @@ macro retarget_stage(stage, name)
 endmacro
 
 org $84F300
-CR_PostLoad:			; touches only A/X/Y (free here), $0B92-$0B97 and the blockMap
+SC_PostLoad:			; touches only A/X/Y (free here), $0B92-$0B97 and the blockMap
 	php
 	rep #$30
 	lda.l $7E1F7A		; quick exit for every stage without a map retarget
@@ -171,7 +171,7 @@ CR_PostLoad:			; touches only A/X/Y (free here), $0B92-$0B97 and the blockMap
 	beq .check
 	jmp .done
 .check:
-	jsl CR_Altered
+	jsl SC_Altered
 	bcs .altered
 	jmp .done
 .altered:
@@ -228,10 +228,10 @@ macro xlisted(name, table, field)
 	rtl
 endmacro
 
-incsrc "../build/gen/halves.asm"	; org $84F800: CR_SkyClawDead, CR_BattonDead, CR_MetalWingDead
+incsrc "../build/gen/halves.asm"	; org $84F800: SC_SkyClawDead, SC_BattonDead, SC_MetalWingDead
 
 org $84FA00
-%xlisted(CR_SkyClawIsDead, CR_SkyClawDead, $37)		; Sky Claw saves its spawn X in $37/$38
-%xlisted(CR_BattonIsDead, CR_BattonDead, $05)		; checked at spawn (state 0), X = spawn X
-%xlisted(CR_MetalWingIsDead, CR_MetalWingDead, $05)	; checked at spawn (state 0), X = spawn X
+%xlisted(SC_SkyClawIsDead, SC_SkyClawDead, $37)		; Sky Claw saves its spawn X in $37/$38
+%xlisted(SC_BattonIsDead, SC_BattonDead, $05)		; checked at spawn (state 0), X = spawn X
+%xlisted(SC_MetalWingIsDead, SC_MetalWingDead, $05)	; checked at spawn (state 0), X = spawn X
 	assert pc() <= $84FB00, "code overlaps the next block"

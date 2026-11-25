@@ -18,9 +18,9 @@ org $87FFD0
 CR87_Igloo:
 	cpx #$00
 	bne .live
-	jsl CR_MeltGate
+	jsl SC_MeltGate
 	bcc .live
-	jsl CR_IglooMelt	; map patch + $3A = 1
+	jsl SC_IglooMelt	; map patch + $3A = 1
 	rts			; back at $87:E359: LDA $3A / BNE -> JSL $828398 (delete)
 .live:
 	jmp ($E38D,x)
@@ -29,14 +29,14 @@ CR87_Igloo:
 ; --- snowball: entry $87:E037  LDA $35 / TSB $11  (4 bytes) -> JML
 org $87E037
 	assert read1($87E037) == $A5 && read1($87E038) == $35 && read1($87E039) == $04 && read1($87E03A) == $11
-	jml CR_SnowballEntry
+	jml SC_SnowballEntry
 
 org $84FB60
-CR_MeltGate:			; C=1: Chill Penguin's stage in its Meltdown state
+SC_MeltGate:			; C=1: Chill Penguin's stage in its Meltdown state
 	php
 	sep #$20
 	pha
-	jsl CR_Altered
+	jsl SC_Altered
 	bcc .no
 	lda.l $7E1F7A
 	cmp #$08
@@ -51,7 +51,7 @@ CR_MeltGate:			; C=1: Chill Penguin's stage in its Meltdown state
 	clc
 	rtl
 
-CR_IglooMelt:			; replica of the patch step of the native destruction ($87:E472-E492)
+SC_IglooMelt:			; replica of the patch step of the native destruction ($87:E472-E492)
 	rep #$20
 	lda $05
 	sec
@@ -69,8 +69,8 @@ CR_IglooMelt:			; replica of the patch step of the native destruction ($87:E472-
 	sta $3A			; the igloo deletes itself on return
 	rtl
 
-CR_SnowballEntry:
-	jsl CR_MeltGate
+SC_SnowballEntry:
+	jsl SC_MeltGate
 	bcs .decline
 	lda $35			; replaced
 	tsb $11			; replaced

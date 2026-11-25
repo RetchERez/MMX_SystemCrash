@@ -5,7 +5,7 @@ roost ever lives, unlisted ones still do; Penguin's bats unaffected even with ev
 Metal Wings: unit test on screen next to X on the rails, minecart flag $0C26 bit 5 set."""
 import sys, os; sys.path.insert(0, 'tools')
 from mmx import *
-ROM = Path(os.environ.get('CR_ROM', ROOT / 'build/v10_rc1.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(os.environ.get('SC_ROM', ROOT / 'build/v10_rc1.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
 gen = open(ROOT / 'build/gen/halves.asm').read()
 
 
@@ -14,7 +14,7 @@ def lst(label):
     return [int(v.strip().strip('$'), 16) for v in line.replace('dw', '').split(',') if v.strip() != '$FFFF']
 
 
-BDEAD = lst('CR_BattonDead'); MDEAD = lst('CR_MetalWingDead')
+BDEAD = lst('SC_BattonDead'); MDEAD = lst('SC_MetalWingDead')
 m = MMX(ROM, rt=ROOT / 'build/rt_am'); pw = make_password_state(m)
 def ww(a, v): m.wb(a, v & 0xff); m.wb(a + 1, (v >> 8) & 0xff)
 def near(x, L): return any(abs(x - d) <= 2 for d in L)

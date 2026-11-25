@@ -1,10 +1,10 @@
-MEGA MAN X: CHAIN REACTION
+MEGA MAN X: SYSTEM CRASH
 FINAL v1.0 DESIGN SPECIFICATION
 Target: Mega Man X / Rockman X (SNES, 1993)
 Scope: Mega Man X1 only
 
 1. PROJECT GOAL
-Mega Man X: CHAIN REACTION expands the real X1 system where defeating one Maverick can alter another Maverick's stage.
+Mega Man X: SYSTEM CRASH expands the real X1 system where defeating one Maverick can alter another Maverick's stage.
 
 Retail X1 already confirms:
 - Chill Penguin -> Flame Mammoth: molten terrain freezes.
@@ -45,7 +45,7 @@ Examples:
 - Spark Mandrill keeps its normal enemies, but Thunder Slimer loses the electricity-dependent lightning attack.
 - Flooded Sting Chameleon keeps its normal cast, but existing Amenhoppers gain water to move through.
 
-CHAIN REACTION follows that philosophy.
+SYSTEM CRASH follows that philosophy.
 
 Global enemy rules:
 - No X2/X3 enemies.
@@ -58,7 +58,7 @@ Global enemy rules:
 
 
 2A. STRICT EXISTING-ASSET GRAPHICS POLICY
-CHAIN REACTION v1.0 must look as though Capcom assembled every altered state from the original Mega Man X1 cartridge art.
+SYSTEM CRASH v1.0 must look as though Capcom assembled every altered state from the original Mega Man X1 cartridge art.
 
 Allowed:
 - existing X1 stage tiles and background tiles;
@@ -102,7 +102,7 @@ Source: Flame Mammoth
 Status: new.
 
 New physical explanation:
-CHAIN REACTION visually establishes a heat-exchange/industrial coolant connection between Snow Mountain's missile-base infrastructure and Flame Mammoth's weapons factory. After Mammoth's factory is destroyed, its emergency shutdown sends stored heat/hot coolant through the return side of the system, causing LOCALIZED thaw around the base.
+SYSTEM CRASH visually establishes a heat-exchange/industrial coolant connection between Snow Mountain's missile-base infrastructure and Flame Mammoth's weapons factory. After Mammoth's factory is destroyed, its emergency shutdown sends stored heat/hot coolant through the return side of the system, causing LOCALIZED thaw around the base.
 
 Existing-asset visual implementation:
 - replace selected snow-covered tiles with existing exposed rock/industrial tiles from Chill Penguin's own X1 stage;
@@ -264,7 +264,7 @@ Source: Sting Chameleon
 Status: new.
 
 Basis:
-Capcom describes Sting Chameleon as a Ranger and first line of defense for the forest base, while Storm Eagle commands the 7th Air Squadron and a new air destroyer. CHAIN REACTION treats the forest base as a forward reconnaissance/tracking node. When Chameleon is defeated, the airport keeps its power, weapons and troops but loses part of its automated target-acquisition support.
+Capcom describes Sting Chameleon as a Ranger and first line of defense for the forest base, while Storm Eagle commands the 7th Air Squadron and a new air destroyer. SYSTEM CRASH treats the forest base as a forward reconnaissance/tracking node. When Chameleon is defeated, the airport keeps its power, weapons and troops but loses part of its automated target-acquisition support.
 
 Existing-asset visual implementation:
 - reuse existing airport/control-panel and status-display tiles;
@@ -438,7 +438,7 @@ No explanatory text is required.
 
 20. RESEARCH DISTINCTION
 Confirmed retail facts and official Capcom profile information are the factual basis.
-The five new reactions are CHAIN REACTION design decisions. They are NOT claimed to be lost Capcom content.
+The five new reactions are SYSTEM CRASH design decisions. They are NOT claimed to be lost Capcom content.
 
 FINAL v1.0 ACCEPTANCE
 [ ] Three retail reactions preserved.
@@ -456,4 +456,4 @@ FINAL v1.0 ACCEPTANCE
 [ ] No Sigma-stage regression.
 [ ] Patch built only for verified ROM/hash/header state.
 
-END OF MEGA MAN X: CHAIN REACTION v1.0 FINAL DESIGN
+END OF MEGA MAN X: SYSTEM CRASH v1.0 FINAL DESIGN

@@ -1,4 +1,4 @@
-MEGA MAN X: CHAIN REACTION - CLAUDE CODE HANDOFF
+MEGA MAN X: SYSTEM CRASH - CLAUDE CODE HANDOFF
 
 Goal: implement the frozen v1.0 design as an actual SNES BPS ROM patch.
 Design is complete. Implementation is NOT complete. No playable patch has

@@ -12,7 +12,7 @@ import password
 ROOT = Path(__file__).resolve().parent.parent
 MESEN = ROOT / 'tools/vendor/mesen2/Mesen.exe'   # portable copy: its settings.json plugs a SNES pad into port 1, allows Lua file IO, zero RAM
 VAN = ROOT / 'rom_private/Mega Man X (USA) (Rev 1).sfc'; rom = VAN.read_bytes()
-PATCH = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'
+PATCH = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
 W = ROOT / 'build/mesen'; W.mkdir(parents=True, exist_ok=True)
 GRID = {1: (1, 0), 8: (2, 0), 3: (0, 1), 4: (3, 1), 5: (0, 2), 7: (3, 2), 6: (1, 3), 2: (2, 3)}
 SRC = {1: 0x04, 2: 0x01, 3: 0x02, 4: 0x80, 5: 0x40, 6: 0x10, 7: 0x20, 8: 0x08}
@@ -35,11 +35,11 @@ end, emu.eventType.inputPolled)
 emu.addEventCallback(function()
   f = f + 1; pad = {}
   if f == 1 then for a=0,0x1FFFF do wr(a, 0) end end
-  if os.getenv('CR_MESEN_SHOT') and f % 100 == 0 and f <= 2000 then local sh = io.open(OUT .. '.' .. f .. '.png', 'wb'); sh:write(emu.takeScreenshot()); sh:close() end
+  if os.getenv('SC_MESEN_SHOT') and f % 100 == 0 and f <= 2000 then local sh = io.open(OUT .. '.' .. f .. '.png', 'wb'); sh:write(emu.takeScreenshot()); sh:close() end
   if phase == 0 then
     if script[si][1] then pad.b = script[si][1] end
     sleft = sleft - 1
-    if sleft <= 0 then si = si + 1; if si > #script then phase = 1; t = 5; if os.getenv('CR_MESEN_SHOT') then local sh = io.open(OUT .. '.pw.png', 'wb'); sh:write(emu.takeScreenshot()); sh:close() end else sleft = script[si][2] end end
+    if sleft <= 0 then si = si + 1; if si > #script then phase = 1; t = 5; if os.getenv('SC_MESEN_SHOT') then local sh = io.open(OUT .. '.pw.png', 'wb'); sh:write(emu.takeScreenshot()); sh:close() end else sleft = script[si][2] end end
   elseif phase == 1 then  -- password screen: write cells, cursor on END, press start
     for i=1,#cells do wr(0x1E60 + i - 1, cells[i]) end; wr(0x1E4F, 3)
     t = t - 1; if t <= 0 then phase = 2; t = 0 end
@@ -91,7 +91,7 @@ ALLOWED = {7: [(0x0340, 0x03A0)],                                    # Grid Down
                (0x1928, 0x1D08), (0xFA00, 0xFB00)],                    # the refused light animator's effect slot and its event's active flag
            1: [(0x0300, 0x0320), (0x0B92, 0x0B98), (0x2000, 0xA000)]}  # Empty Arsenal: same
 fails = 0
-for st in [int(a) for a in os.environ.get('CR_MESEN_STAGES', '12345678')]:
+for st in [int(a) for a in os.environ.get('SC_MESEN_STAGES', '12345678')]:
     for mask in (0x00, SRC[st]):
         (v, vl), (p, pl) = run(pv, st, mask, 'v'), run(pp, st, mask, 'p')
         assert v[0x1F7A] == st and p[0x1F7A] == st, (v[0x1F7A], p[0x1F7A])

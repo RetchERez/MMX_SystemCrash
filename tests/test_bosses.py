@@ -1,11 +1,11 @@
-"""Bosses untouched: every boss whose stage CHAIN REACTION changes is fought from checkpoint 2 with the same controller
+"""Bosses untouched: every boss whose stage SYSTEM CRASH changes is fought from checkpoint 2 with the same controller
 input (walk right, jump, fire; HP refill is the one TEST ONLY poke) in the original and the changed stage. From the
 frame the boss appears, 600 frames of the fight are compared: the boss's own actor memory every frame, and every
 displayed frame. Pass = identical, except that Boomer Kuwanger's arena is on Grid Down's emergency lighting by design,
 so for him the screen is expected to differ in colour only and his actor memory must still be identical."""
 import sys, hashlib; sys.path.insert(0, 'tools')
 from mmx import *
-ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
 BOSSES = [(8, 0x02, 0x08, 'Chill Penguin'), (7, 0x05, 0x20, 'Boomer Kuwanger'), (5, 0x52, 0x40, 'Storm Eagle'),
           (1, 0x07, 0x04, 'Launch Octopus'), (3, 0x14, 0x02, 'Armored Armadillo')]
 def fight(m, pw, st, boss, mask):

@@ -1,4 +1,4 @@
-MEGA MAN X: CHAIN REACTION
+MEGA MAN X: SYSTEM CRASH
 Test patch 01 - Grid Down (Boomer Kuwanger)
 by RetchERezzed
 
@@ -42,7 +42,7 @@ a 512-byte copier header; remove it first.
 HOW TO PATCH
 ------------
 Use Floating IPS (Flips), Beat, or the online ROM Patcher JS:
-apply chain_reaction_test01_grid_down.bps to your own Mega Man X (USA)
+apply system_crash_test01_grid_down.bps to your own Mega Man X (USA)
 (Rev 1) ROM. No ROM is included with this patch.
 
 KNOWN LIMITS OF THIS TEST BUILD

@@ -5,7 +5,7 @@ i.e. whether the light animator runs or not cannot change what the ship or the b
 import sys, os; sys.path.insert(0, 'tools')
 from mmx import *
 import ctypes
-ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
 LIGHTS = (1, 2, 3, 4, 5, 6, 7, 13, 14)
 m = MMX(ROM, rt=ROOT / 'build/rt_sl'); pw = make_password_state(m)
 enter_stage_at_cp(m, 5, 0x00, 2, rom, pw); m.frames(30)

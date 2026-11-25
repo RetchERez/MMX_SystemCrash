@@ -1,4 +1,4 @@
-MEGA MAN X: CHAIN REACTION
+MEGA MAN X: SYSTEM CRASH
 Version 1.0
 by RetchERezzed
 
@@ -7,11 +7,12 @@ beat Chill Penguin and Flame Mammoth's factory freezes; beat Storm Eagle and
 his airship wrecks Spark Mandrill's power plant; beat Launch Octopus and
 Sting Chameleon's forest floods.
 
-CHAIN REACTION finishes that idea. Every Maverick now changes exactly one
+SYSTEM CRASH finishes that idea. Every Maverick now changes exactly one
 other Maverick's stage, and every stage can be changed by exactly one
-Maverick. The order you choose shapes the world you play through.
+Maverick. Take one down and something else goes offline. The order you
+choose shapes the world you play through.
 
-No new enemies, no new bosses, no text. The original three changes are kept
+No new enemies and no new bosses. The original three changes are kept
 exactly as they were.
 
 
@@ -66,6 +67,15 @@ Every Heart Tank, Sub Tank, armour part and the Hadouken can still be found
 in any order. Passwords work as normal and restore every change.
 
 
+ON SCREEN
+---------
+- Stage select: every stage a beaten Maverick has changed says OFFLINE at
+  the bottom of its portrait, in the green of the STAGE / MAP / SPEC panels
+- The label marks the stage that was changed, not the Maverick you beat,
+  so you can see at a glance where the world is different
+- Title screen: SYSTEM CRASH under the MEGA MAN X logo, in the gold of the X
+
+
 REQUIRED ROM
 ------------
 Mega Man X (USA) (Rev 1)
@@ -76,13 +86,38 @@ SHA-1: C65216760BA99178100A10D98457CF11496C2097
 The patch refuses any other ROM. A file of 1,573,376 bytes has a 512-byte
 copier header; remove it first.
 
-After patching: 2,097,152 bytes (2 MB), CRC32 46B26E3C.
+After patching: 2,097,152 bytes (2 MB), CRC32 {CRC}.
 
 
 HOW TO PATCH
 ------------
-Apply chain_reaction_v1.0.bps to your own Mega Man X (USA) (Rev 1) ROM with
+Apply system_crash_v1.0.bps to your own Mega Man X (USA) (Rev 1) ROM with
 Floating IPS (Flips), beat, or the online ROM Patcher JS. No ROM is included.
+
+
+CHANGELOG
+---------
+Version 1.0 (first release)
+- Five new stage changes: Meltdown, Grid Down, Radar Down, Ambush Called
+  Off and Empty Arsenal, so all eight Mavericks now change another stage
+- The three original changes (Frozen Factory, Blackout, Flooded Forest)
+  kept exactly as in the original game
+- Every cut takes away one third, so two thirds of each enemy group or
+  hazard stays in place
+- Grid Down: emergency lighting through the tower interior and Kuwanger's
+  arena; one laser-grid sensor and the Turn Cannon lose power
+- Radar Down: airport running lights off, control tower windows dark, a
+  third of the Sky Claws dead, one of Death Rogumer's deck guns silent
+- Meltdown: melted igloos (no Tombots, Heart Tank in the open) and no
+  rolling snowballs
+- Ambush Called Off: a third of the Batton Bone roosts empty and a third of
+  the Metal Wing ambushes on the minecart ride gone
+- Empty Arsenal: empty munition silos and Mega Tortoises that drop one bomb
+  instead of two in two volleys out of three
+- Stage select: OFFLINE label on every stage a beaten Maverick has changed
+- Title screen: SYSTEM CRASH subtitle under the logo
+- Bosses, weapons, items, passwords, Sigma's fortress and the ending
+  unchanged
 
 
 TESTED WITH
@@ -99,9 +134,12 @@ snes9x (libretro), headless and scripted:
   exactly like the original
 - the final battles, the escape, the epilogue and the credits, identical to
   the original from start to finish
+- the stage select and title screen additions: every combination of
+  beaten Mavericks, and the game after them identical to the original
 
-The stage changes, items, Hadouken, boss fights, Sigma's fortress and
-identical-to-original play were run again on bsnes-mercury (libretro) with
-the same results, and every stage was checked once more in Mesen 2.
+The stage changes, items, Hadouken, boss fights, Sigma's fortress,
+identical-to-original play and the stage select and title additions were
+run again on bsnes-mercury (libretro) with the same results, and every
+stage was checked once more in Mesen 2.
 
 Not yet tested on real hardware. Please report anything odd.

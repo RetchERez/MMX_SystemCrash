@@ -3,7 +3,7 @@ alive, no igloo-spawned Tombots, map patched; Heart Tank item present, (3) no ro
 import sys, os; sys.path.insert(0, 'tools')
 from mmx import *
 from PIL import Image, ImageDraw
-ROM = Path(os.environ.get('CR_ROM', ROOT / 'build/v10_rc1.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(os.environ.get('SC_ROM', ROOT / 'build/v10_rc1.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
 m = MMX(ROM, rt=ROOT / 'build/rt_md'); pw = make_password_state(m)
 def ww(a, v): m.wb(a, v & 0xff); m.wb(a + 1, (v >> 8) & 0xff)
 def opencam(): ww(0x1E56, 0); ww(0x1E58, 0x1F00); ww(0x1E5A, 0); ww(0x1E5C, 0x0F00)   # TEST ONLY

@@ -14,7 +14,7 @@ def run(ROM, TAG, N=40000):
   for f in range(2400):
       m.wb(0x1F7A, 12); m.frames(1)      # TEST ONLY: Sigma stage 4 (the final room) instead of Sigma 1
       if m.rb(0xD2) == 4 and m.rb(0xD3) == 4: break
-  SIGMA_FIGHT = set(eval(__import__('os').environ.get('CR_SIGMA_FIGHT', '[]')))
+  SIGMA_FIGHT = set(eval(__import__('os').environ.get('SC_SIGMA_FIGHT', '[]')))
   BOSS = {0x26, 0x65, 0x66, 0x67, 0x69, 0x6B, 0x6C, 0x6D}
   last = None; hashes = []; full = set(); top = {}; wolf = None; killed = False; wolf_frames = 0
   for f in range(N):
@@ -60,7 +60,7 @@ def run(ROM, TAG, N=40000):
           w = bytearray(m.read(0, 0x20000)); w[0x100:0x300] = bytes(0x200); w[0xFFBC:0xFFC0] = bytes(4); hashes.append(hashlib.sha1(w).hexdigest())
   open(ROOT / f'build/end_{TAG}.hashes', 'w').write('\n'.join(hashes)); m.close(); return hashes, killed, last
 
-ROMP = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'
+ROMP = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
 V = run(VANILLA, 'v'); Pt = run(ROMP, 'p')
 first = next((i for i, (a, b) in enumerate(zip(V[0], Pt[0])) if a != b), None)
 print(f'ending: Wolf Sigma defeated vanilla {V[1]} patch {Pt[1]}; final mode vanilla {V[2][:3]} patch {Pt[2][:3]}; '

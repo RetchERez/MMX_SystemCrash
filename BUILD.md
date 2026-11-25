@@ -1,4 +1,4 @@
-# Mega Man X: CHAIN REACTION v1.0 — build and test
+# Mega Man X: SYSTEM CRASH v1.0 — build and test
 
 Design: https://claude.ai/artifact/Wt3DrUfUaev21QCyKZwdYX (v1.0 master design, three loops).
 
@@ -21,7 +21,7 @@ python tools/audit_rom.py "rom_private/Mega Man X (USA) (Rev 1).sfc"   # writes 
 ```
 
 ```
-python tools/build.py --name chain_reaction_test     # build + BPS + roundtrip
+python tools/build.py --name system_crash_test     # build + BPS + roundtrip
 python tools/release.py                              # rebuild v1.0 and package both ZIPs
 ```
 
@@ -59,7 +59,7 @@ python tools/release.py                              # rebuild v1.0 and package 
 | `tests/test_minecart.py` | A real minecart ride: listed Metal Wings never come in Ambush; the rest attack as in vanilla; normal ride identical to vanilla |
 | `tests/test_ending.py` | Every Maverick beaten, fortress to the ending, vanilla vs patch: Velguarder and Sigma beaten by X's own shots, Wolf Sigma's final shot replaced by the game's lethal-hit writes; all of WRAM compared every 300 frames through the credits |
 | `tests/mesen_check.py` | Third emulator, Mesen 2 (`tools/vendor/mesen2`, portable `settings.json`: pad in port 1, Lua file IO, zeroed RAM): every stage normal and altered via real password and stage select |
-| `tests/run_bsnes.sh` | The reaction suite, items, Hadouken, boss arenas, Sigma and parity again on bsnes-mercury (`CR_CORE`) |
+| `tests/run_bsnes.sh` | The reaction suite, items, Hadouken, boss arenas, Sigma and parity again on bsnes-mercury (`SC_CORE`) |
 
 Test-only RAM pokes (camera borders, HP refill, test spawns, the stage number for Sigma) are marked
 in the scripts and never ship.
@@ -67,7 +67,7 @@ in the scripts and never ship.
 ## Source layout
 
 - `src/main.asm` — free-space assertions, includes
-- `src/core.asm` — `CR_Altered` predicate (Sigma firewall), palette-bank hook `$80:B512`,
+- `src/core.asm` — `SC_Altered` predicate (Sigma firewall), palette-bank hook `$80:B512`,
   post-load hook `$80:BB0F` (map/collision pointers, blockMap retarget), half-power list checks
 - `src/grid_down.asm`, `radar_down.asm`, `empty_arsenal.asm`, `ambush.asm`, `meltdown.asm`
 - `tools/` — build, release, disassembler, password codec, stage renderer, harness, survey

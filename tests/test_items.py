@@ -3,7 +3,7 @@
 Heart = a $1F9C bit, Sub Tank = $1F83-86. Retail stages are included as controls. Camera borders opened for the glide (TEST ONLY)."""
 import sys, os, csv; sys.path.insert(0, 'tools')
 from mmx import *
-ROM = Path(os.environ.get('CR_ROM', ROOT / 'build/v10_rc3.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(os.environ.get('SC_ROM', ROOT / 'build/v10_rc3.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
 SRC = {1: 0x04, 2: 0x01, 3: 0x02, 4: 0x80, 5: 0x40, 6: 0x10, 7: 0x20, 8: 0x08}
 items = {}
 for r in csv.DictReader(open(ROOT / 'audit_output/events.csv')):

@@ -1,8 +1,8 @@
 """Sky Claws: normal = all move; Radar Down = claws whose spawn X is in the dead list never move, the rest move."""
 import sys, os; sys.path.insert(0,'tools')
 from mmx import *
-ROM=Path(os.environ.get('CR_ROM', ROOT/'build/test02b.sfc')); rom=VANILLA.read_bytes(); P=0x0BA8
-_g=open(ROOT/'build/gen/halves.asm').read().split('CR_SkyClawDead:')[1].split(chr(10))[1]
+ROM=Path(os.environ.get('SC_ROM', ROOT/'build/test02b.sfc')); rom=VANILLA.read_bytes(); P=0x0BA8
+_g=open(ROOT/'build/gen/halves.asm').read().split('SC_SkyClawDead:')[1].split(chr(10))[1]
 DEAD={int(v.strip().strip('$'),16) for v in _g.replace('dw','').split(',') if v.strip()!='$FFFF'}
 m=MMX(ROM, rt=ROOT/'build/rt_claw'); pw=make_password_state(m)
 def ww(a,v): m.wb(a,v&0xff); m.wb(a+1,(v>>8)&0xff)

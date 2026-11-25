@@ -36,8 +36,8 @@ def ride(ROM, mask):
           else: cur.pop(s, None)
           if m.rw(P + 5) > 4800 and m.rw(P + 8) > 2550: log.append(('end of track', f, m.rw(P + 5))); break
   m.close(); return log, mw
-ROMP = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'
-gen = open(ROOT / 'build/gen/halves.asm').read().split('CR_MetalWingDead:')[1].split(chr(10))[1]
+ROMP = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
+gen = open(ROOT / 'build/gen/halves.asm').read().split('SC_MetalWingDead:')[1].split(chr(10))[1]
 DEAD = [int(v.strip().strip('$'), 16) for v in gen.replace('dw', '').split(',') if v.strip() != '$FFFF']
 V = ride(VANILLA, 0x00); N = ride(ROMP, 0x00); A = ride(ROMP, 0x02)
 for tag, (log, mw) in (('vanilla', V), ('patch normal', N), ('patch Ambush', A)):

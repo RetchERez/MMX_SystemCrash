@@ -1,4 +1,4 @@
-MEGA MAN X: CHAIN REACTION
+MEGA MAN X: SYSTEM CRASH
 FINAL v1.0 DESIGN SPECIFICATION
 Status: DESIGN FROZEN FOR IMPLEMENTATION
 Target game: Mega Man X / Rockman X
@@ -11,7 +11,7 @@ Distribution: patch only, never ROM
 0. EXECUTIVE SUMMARY
 ===============================================================================
 
-Mega Man X: CHAIN REACTION expands a real Mega Man X1 design concept:
+Mega Man X: SYSTEM CRASH expands a real Mega Man X1 design concept:
 defeating certain Mavericks can alter another Maverick's stage.
 
 Retail Mega Man X already contains three major cross-stage reactions:
@@ -21,7 +21,7 @@ Retail Mega Man X already contains three major cross-stage reactions:
    causing blackouts and disabling electricity-dependent hazards/attacks.
 3. Launch Octopus defeated -> Sting Chameleon's forest/cavern floods.
 
-CHAIN REACTION completes that idea across all eight Maverick stages without
+SYSTEM CRASH completes that idea across all eight Maverick stages without
 changing what Mega Man X fundamentally is.
 
 FINAL SYSTEM RULES:
@@ -111,15 +111,15 @@ Mega Man X1 already contains boss-triggered stage changes, and original Capcom
 staff later described stage changes as part of the game's intended design:
 stage order could cause the player to experience stages differently.
 
-CHAIN REACTION therefore does NOT claim to restore a documented cut eight-stage
+SYSTEM CRASH therefore does NOT claim to restore a documented cut eight-stage
 system.
 
 The correct historical framing is:
 
-    "CHAIN REACTION expands a documented Mega Man X1 design concept that Capcom
+    "SYSTEM CRASH expands a documented Mega Man X1 design concept that Capcom
      implemented selectively in the retail game."
 
-The five new reactions in this document are original CHAIN REACTION design
+The five new reactions in this document are original SYSTEM CRASH design
 decisions. They are not presented as lost Capcom content.
 
 ===============================================================================
@@ -192,7 +192,7 @@ STING CHAMELEON AFTER LAUNCH OCTOPUS
 - existing Amenhoppers gain water in which to move;
 - normal enemy ecosystem remains.
 
-CHAIN REACTION follows the same rule.
+SYSTEM CRASH follows the same rule.
 
 GLOBAL ENEMY RULES:
 - no X2/X3 enemies;
@@ -254,7 +254,7 @@ STATE:
 THAWING SNOW MOUNTAIN
 
 TYPE:
-New CHAIN REACTION state.
+New SYSTEM CRASH state.
 
 DESIGN LOGIC:
 The Snow Mountain missile-base infrastructure and Flame Mammoth's industrial
@@ -351,7 +351,7 @@ Mixed:
 - miniboss reduced;
 - visibility worsened.
 
-This is a model CHAIN REACTION state.
+This is a model SYSTEM CRASH state.
 
 ===============================================================================
 9. STAGE SPECIFICATION: BOOMER KUWANGER
@@ -364,7 +364,7 @@ STATE:
 FULL-POWER TOWER
 
 TYPE:
-New CHAIN REACTION state.
+New SYSTEM CRASH state.
 
 DESIGN LOGIC:
 Spark Mandrill has seized the city's power stations and brought the city to a
@@ -436,7 +436,7 @@ STATE:
 MINE REINFORCED
 
 TYPE:
-New CHAIN REACTION state.
+New SYSTEM CRASH state.
 
 DESIGN LOGIC:
 Kuwanger's city tower serves as a Maverick base/command position.
@@ -451,7 +451,7 @@ environmental reactions.
 
 Therefore:
 
-CHAIN REACTION v1.0 deliberately implements the Metal Wing reinforcement.
+SYSTEM CRASH v1.0 deliberately implements the Metal Wing reinforcement.
 
 DO NOT market it as restored/cut Capcom content unless direct ROM tracing later
 proves a native conditional spawn.
@@ -511,7 +511,7 @@ STATE:
 MUNITIONS SHORTAGE
 
 TYPE:
-New CHAIN REACTION state.
+New SYSTEM CRASH state.
 
 DESIGN LOGIC:
 Armored Armadillo's mine supplies ore/minerals used for ammunition.
@@ -626,13 +626,13 @@ STATE:
 RECON NETWORK LOST
 
 TYPE:
-New CHAIN REACTION state.
+New SYSTEM CRASH state.
 
 DESIGN LOGIC:
 Sting Chameleon is a Ranger/forward-defense unit.
 Storm Eagle commands an air squadron and Death Rogumer.
 
-CHAIN REACTION treats Chameleon's forest installation as one node in the
+SYSTEM CRASH treats Chameleon's forest installation as one node in the
 Maverick reconnaissance/targeting network.
 
 When Chameleon is defeated:
@@ -733,7 +733,7 @@ v1.0 preserves 100% retail behavior for:
 - boss weakness cycle;
 - Sigma-stage Maverick rematches.
 
-CHAIN REACTION is a stage-state project, not a boss rebalance.
+SYSTEM CRASH is a stage-state project, not a boss rebalance.
 
 ===============================================================================
 16. ITEM / UPGRADE LOCK
@@ -976,7 +976,7 @@ remove the visual effect instead of increasing technical risk.
 23. SIGMA STAGE FIREWALL
 ===============================================================================
 
-No CHAIN REACTION stage-state logic may propagate into Sigma Fortress stages.
+No SYSTEM CRASH stage-state logic may propagate into Sigma Fortress stages.
 
 Test:
 - all Sigma stages;
@@ -1009,12 +1009,12 @@ Do NOT add:
 - "Stage Altered" popup;
 - reaction icons;
 - tutorial message;
-- chain-reaction meter;
+- system-crash meter;
 - lore text explaining every connection.
 
 The patch/readme may call the project:
 
-    Mega Man X: CHAIN REACTION
+    Mega Man X: SYSTEM CRASH
 
 The ROM itself should boot and initially present like normal Mega Man X.
 
@@ -1212,7 +1212,7 @@ RELEASE
 31. DESIGN FREEZE
 ===============================================================================
 
-This document defines Mega Man X: CHAIN REACTION v1.0 FINAL.
+This document defines Mega Man X: SYSTEM CRASH v1.0 FINAL.
 
 The feature set is frozen.
 
@@ -1226,4 +1226,4 @@ The goal is to finish one of the ideas already inside Mega Man X:
 
     STAGE ORDER CHANGES THE WORLD.
 
-END OF MEGA MAN X: CHAIN REACTION v1.0 FINAL
+END OF MEGA MAN X: SYSTEM CRASH v1.0 FINAL

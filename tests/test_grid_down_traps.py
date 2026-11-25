@@ -4,7 +4,7 @@ Expect: normal = all five sensors beam; Grid Down = only the two far sensors (x 
 and traps still fire when a live beam is touched."""
 import sys, collections; sys.path.insert(0,'tools')
 from mmx import *
-import os; ROM=Path(os.environ.get('CR_ROM', ROOT/'build/grid_down_test.sfc')); rom=VANILLA.read_bytes()
+import os; ROM=Path(os.environ.get('SC_ROM', ROOT/'build/grid_down_test.sfc')); rom=VANILLA.read_bytes()
 m=MMX(ROM, rt=ROOT/'build/runtime_test'); pw=make_password_state(m); P=0x0BA8
 def ww(a,v): m.wb(a,v&0xff); m.wb(a+1,(v>>8)&0xff)
 for mask in (0x00,0x20):

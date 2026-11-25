@@ -6,7 +6,7 @@ reference/gameplay_<n>_<stage>.png and reference/gameplay_all_five.png"""
 import sys; sys.path.insert(0, 'tools')
 from mmx import *
 from PIL import Image
-ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'
+ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
 rom = VANILLA.read_bytes(); P = 0x0BA8
 # name, stage, source bit, checkpoint, guided path (or []), shoot when X >= this x, extra frames after reaching it
 STAGES = [

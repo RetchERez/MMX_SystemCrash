@@ -8,7 +8,7 @@ vpal={}
 for cp in range(3):
     enter_stage_at_cp(vm,7,0x00,cp,rom,vpw); vm.frames(30); vpal[cp]=pal(vm)
 vm.close()
-pm=MMX(Path(__import__('os').environ.get('CR_ROM', ROOT/'build/grid_down_test.sfc')), rt=ROOT/'build/rt_persist_p'); make_password_state(pm); ppw=pm.save()
+pm=MMX(Path(__import__('os').environ.get('SC_ROM', ROOT/'build/grid_down_test.sfc')), rt=ROOT/'build/rt_persist_p'); make_password_state(pm); ppw=pm.save()
 ok=True
 for cp in range(3):
     v=vpal[cp]

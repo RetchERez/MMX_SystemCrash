@@ -3,7 +3,7 @@ Output (private, ROM-derived, git-ignored PNGs): reference/<stage>.png and refer
 import sys; sys.path.insert(0, 'tools')
 from mmx import *
 from PIL import Image
-ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/chain_reaction_v1.0.sfc'
+ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/system_crash_v1.0.sfc'
 rom = VANILLA.read_bytes(); P = 0x0BA8
 SPOTS = [  # file, stage, source bit, checkpoint, (x, y) or None, settle frames
     ('1_meltdown', 8, 0x08, 1, (5200, 660), 40),

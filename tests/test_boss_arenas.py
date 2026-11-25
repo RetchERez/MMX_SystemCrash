@@ -4,7 +4,7 @@ the Storm Eagle fight."""
 import sys, os, hashlib; sys.path.insert(0, 'tools')
 from mmx import *
 from PIL import Image, ImageDraw
-ROM = Path(os.environ.get('CR_ROM', ROOT / 'build/v10_rc3.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(os.environ.get('SC_ROM', ROOT / 'build/v10_rc3.sfc')); rom = VANILLA.read_bytes(); P = 0x0BA8
 m = MMX(ROM, rt=ROOT / 'build/rt_ba'); pw = make_password_state(m)
 def ww(a, v): m.wb(a, v & 0xff); m.wb(a + 1, (v >> 8) & 0xff)
 shots = []

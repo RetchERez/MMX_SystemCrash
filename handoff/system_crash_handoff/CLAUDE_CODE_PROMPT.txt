@@ -1,4 +1,4 @@
-Implement Mega Man X: CHAIN REACTION v1.0 as a genuine SNES ROM hack, not a PC recompilation, based on design/FINAL_v1.0.txt. Read START_HERE.txt, research/IMPLEMENTATION_NOTES.md, research/SOURCES.md and inspect the tools and tests directories first.
+Implement Mega Man X: SYSTEM CRASH v1.0 as a genuine SNES ROM hack, not a PC recompilation, based on design/FINAL_v1.0.txt. Read START_HERE.txt, research/IMPLEMENTATION_NOTES.md, research/SOURCES.md and inspect the tools and tests directories first.
 
 Work locally with my legally obtained Mega Man X (U) (V1.1).zip or ROM. Verify source size and hashes, remove a 512-byte copier header if present, preserve original untouched. Do not download a ROM. Target unheadered USA Rev 1 CRC32 DED53C64 only. If a signature or hash is wrong, stop that edit and investigate rather than guessing. Keep all ROMs and extracted copyrighted assets private and out of deliverables.
 

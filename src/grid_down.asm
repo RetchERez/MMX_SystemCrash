@@ -5,7 +5,7 @@
 ;      at x $0260 and $0370 are dead (no beam $43); sensors at $01FC, $02EE and
 ;      $0410 stay on backup power, and any live beam still arms every Ray Trap
 ;   3. The fixed Turn Cannon ($17) never fires
-; Gameplay hooks call CR_Altered, which is false outside stage 07 (Sigma safe).
+; Gameplay hooks call SC_Altered, which is false outside stage 07 (Sigma safe).
 ; ---------------------------------------------------------------------------
 
 ; --- 1. palette data + slot table (generated from the user's ROM by tools/build.py)
@@ -41,7 +41,7 @@ org $879A5B
 
 org $87FEE0
 CR87_Sensor:			; M=1 X=1, DP = sensor actor slot ($05/$06 = X position)
-	jsl CR_Altered
+	jsl SC_Altered
 	bcc .live
 	; Two thirds of the tower's powered weapons stay on backup power (4 of 6): sensors at
 	; x $01FC, $0260, $02EE, $0410 live; the sensor at x $0370 dead; Turn Cannon dead.
@@ -60,7 +60,7 @@ CR87_Sensor:			; M=1 X=1, DP = sensor actor slot ($05/$06 = X position)
 	rts
 
 CR87_TurnFire:
-	jsl CR_Altered
+	jsl SC_Altered
 	bcs .skip
 	rep #$10		; replaced: REP #$10
 	jsl $828358		; replaced: JSL $828358 (its Z result feeds BNE at $87:9A2C)
@@ -69,7 +69,7 @@ CR87_TurnFire:
 	rts			; same as the retail non-firing path ($87:9A25)
 
 CR87_TurnFire2:
-	jsl CR_Altered
+	jsl SC_Altered
 	bcs .skip
 	rep #$10		; replaced: REP #$10
 	jsl $828358		; replaced: JSL $828358 (its Z result feeds BNE at $87:9A61)

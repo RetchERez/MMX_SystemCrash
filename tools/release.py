@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Package CHAIN REACTION v1.0.
+"""Package SYSTEM CRASH v1.0.
   python tools/release.py
-1. rebuild from source (tools/build.py --name chain_reaction_v1.0), BPS roundtrip checked there
+1. rebuild from source (tools/build.py --name system_crash_v1.0), BPS roundtrip checked there
 2. player ZIP: BPS + readme.txt (no ROM)
 3. development ZIP: src/, tools/*.py, tests/, BUILD.md, docs/*.md, QA logs + matrix results
    (no ROM bytes, no build/gen data, no save states, no screenshots or renders: those derive from the ROM)
@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REL = ROOT / 'release'
-NAME = 'chain_reaction_v1.0'
+NAME = 'system_crash_v1.0'
 
 
 def sha1(p):
@@ -26,11 +26,11 @@ def main():
     bps = ROOT / 'build' / f'{NAME}.bps'
     v = REL / 'v1.0'
     (v / f'{NAME}.bps').write_bytes(bps.read_bytes())
-    player = REL / 'MegaManX_ChainReaction_v1.0.zip'
+    player = REL / 'MegaManX_SystemCrash_v1.0.zip'
     with zipfile.ZipFile(player, 'w', zipfile.ZIP_DEFLATED) as z:
         z.write(v / f'{NAME}.bps', f'{NAME}.bps')
         z.write(v / 'readme.txt', 'readme.txt')
-    dev = REL / 'MegaManX_ChainReaction_v1.0_dev.zip'
+    dev = REL / 'MegaManX_SystemCrash_v1.0_dev.zip'
     with zipfile.ZipFile(dev, 'w', zipfile.ZIP_DEFLATED) as z:
         for p in sorted((ROOT / 'src').glob('*.asm')):
             z.write(p, f'src/{p.name}')

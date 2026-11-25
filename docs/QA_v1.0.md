@@ -1,6 +1,6 @@
-# CHAIN REACTION v1.0 — QA record
+# SYSTEM CRASH v1.0 — QA record
 
-Build: `chain_reaction_v1.0.sfc`, 2,097,152 bytes, CRC32 46B26E3C (byte-identical to candidate rc8).
+Build: `system_crash_v1.0.sfc`, 2,097,152 bytes, CRC32 46B26E3C (byte-identical to candidate rc8).
 BPS 4,365 bytes, roundtrip verified against the Rev 1 source (CRC32 DED53C64).
 Logs: `qa/` in the development ZIP (`run_all_final.log`, `ending.log`, `bsnes_*.log`, `mesen.log`, matrix JSON).
 

@@ -14,7 +14,7 @@
 ; Data in build/gen/eagle_*.asm is generated from the user's ROM by tools/build.py.
 ; ---------------------------------------------------------------------------
 
-incsrc "../build/gen/eagle_data.asm"	; CR_EagleMaps, CR_EagleColl, CR_EagleRetarget, CR_EagleSlots
+incsrc "../build/gen/eagle_data.asm"	; SC_EagleMaps, SC_EagleColl, SC_EagleRetarget, SC_EagleSlots
 
 ; --- 2. deck turret: skip shot + muzzle effect -------------------------------
 ; $87:D453  JSR $D492 / JSR $D4FA  (M=1 X=1)  ->  JSR CR87_Turret / NOP x3
@@ -29,7 +29,7 @@ org $87D453
 
 org $87FF40
 CR87_Turret:			; M=1 X=1, DP = turret actor slot ($05 = X position)
-	jsl CR_Altered
+	jsl SC_Altered
 	bcc .fire
 	; Radar loss knocks out one of the two deck turrets (x 6086 live, x 6190 dead)
 	rep #$20
@@ -54,9 +54,9 @@ org $87C3D7
 
 org $87FF60
 CR87_SkyClaw:
-	jsl CR_Altered
+	jsl SC_Altered
 	bcc .live
-	jsl CR_SkyClawIsDead
+	jsl SC_SkyClawIsDead
 	bcs .dead
 .live:
 	jmp ($C404,x)
@@ -70,22 +70,22 @@ CR87_SkyClaw:
 ; already switches this same animator for its own reactions ($82:FA19: Frozen Factory adds $0A,
 ; Blackout adds $0E). Radar Down refuses sub $09 before Death Rogumer (x < 6800) with the
 ; routine's own duplicate-decline path, and the altered palette list loads row 1 with those
-; colours at the game's unlit value $0000 (CR_EagleRow1Off). Death Rogumer has its own power:
+; colours at the game's unlit value $0000 (SC_EagleRow1Off). Death Rogumer has its own power:
 ; its animator (x 6800) runs as retail, so the ship and the Storm Eagle fight are unchanged.
-; $82:FA41  LDA $0B / CLC / ADC $0000 / JML $848F7D  (M=1 X=1, D = effect slot)  ->  JML CR_FxAnim
+; $82:FA41  LDA $0B / CLC / ADC $0000 / JML $848F7D  (M=1 X=1, D = effect slot)  ->  JML SC_FxAnim
 org $82FA41
 	%assert_bytes($82FA41, $A5, $0B, $18)
 	%assert_bytes($82FA44, $6D, $00, $00)
 	%assert_bytes($82FA47, $5C, $7D, $8F)
 	%assert_bytes($82FA48, $7D, $8F, $84)
-	jml CR_FxAnim
+	jml SC_FxAnim
 
 org $84FD00
-CR_FxAnim:
+SC_FxAnim:
 	lda $0B
 	cmp #$09
 	bne .retail
-	jsl CR_Altered
+	jsl SC_Altered
 	bcc .retail
 	lda.l $7E1F7A
 	cmp #$05

@@ -5,7 +5,7 @@ Expected: normal = animator present and the colours cycle (as vanilla); Radar Do
 import sys, os; sys.path.insert(0, 'tools')
 from mmx import *
 from PIL import Image
-ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/cr_v10_rc4.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
+ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/sc_v10_rc4.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
 LIGHTS = (1, 2, 3, 4, 5, 6, 7, 13, 14)
 m = MMX(ROM, rt=ROOT / 'build/rt_rl'); pw = make_password_state(m)
 def ww(a, v): m.wb(a, v & 0xff); m.wb(a + 1, (v >> 8) & 0xff)

@@ -11,7 +11,7 @@
 ;      Tortoises in other stages (Mandrill, Kuwanger, Sigma) are untouched.
 ; ---------------------------------------------------------------------------
 
-incsrc "../build/gen/octo_data.asm"	; CR_OctoMaps/Coll/Retarget/Row0/Slots
+incsrc "../build/gen/octo_data.asm"	; SC_OctoMaps/Coll/Retarget/Row0/Slots
 
 ; $87:ECF1  REP #$10 / JSL $828358 (6 bytes, M=1 X=1; reached when $0F is 1 or 2)
 ; -> JMP CR87_Tortoise; skip returns via RTS like the retail no-bomb path ($87:ECE3)
@@ -22,7 +22,7 @@ org $87ECF1
 
 org $87FF80
 CR87_Tortoise:
-	jsl CR_TortoiseShort
+	jsl SC_TortoiseShort
 	bcs .skip		; this volley's second hatch is empty
 .fire:
 	rep #$10		; replaced: REP #$10
@@ -33,8 +33,8 @@ CR87_Tortoise:
 	assert pc() <= $87FFB0, "code overlaps the next block"
 
 org $84FD40
-CR_TortoiseShort:		; M=1 X=1, D = tortoise slot. C=1: skip this bomb
-	jsl CR_Altered
+SC_TortoiseShort:		; M=1 X=1, D = tortoise slot. C=1: skip this bomb
+	jsl SC_Altered
 	bcc .no
 	lda.l $7E1F7A
 	cmp #$01

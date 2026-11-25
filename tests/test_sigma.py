@@ -3,7 +3,7 @@ boss beaten, on vanilla and on the patch, run 600 frames of the same inputs, and
 (stack zone and the header-checksum copy excluded, as in test_parity)."""
 import sys, os, hashlib; sys.path.insert(0, 'tools')
 from mmx import *
-ROM = Path(os.environ.get('CR_ROM', ROOT / 'build/v10_rc3.sfc')); N = int(os.environ.get('CR_SIGMA_FRAMES', 2400)); rom = VANILLA.read_bytes()
+ROM = Path(os.environ.get('SC_ROM', ROOT / 'build/v10_rc3.sfc')); N = int(os.environ.get('SC_SIGMA_FRAMES', 2400)); rom = VANILLA.read_bytes()
 def run(path, tag):
     m = MMX(path, rt=ROOT / f'build/rt_sig_{tag}'); pw = make_password_state(m); out = {}
     for sid in (9, 10, 11, 12):

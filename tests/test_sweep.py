@@ -14,7 +14,7 @@ gen = open(ROOT / 'build/gen/halves.asm').read()
 def lst(label):
     line = gen.split(label + ':')[1].split('\n')[1]
     return [int(v.strip().strip('$'), 16) for v in line.replace('dw', '').split(',') if v.strip() != '$FFFF']
-DEAD = {0x2D: lst('CR_BattonDead'), 0x35: lst('CR_MetalWingDead'), 0x49: lst('CR_SkyClawDead'), 0x17: [1408]}   # the one Turn Cannon is dead in Grid Down
+DEAD = {0x2D: lst('SC_BattonDead'), 0x35: lst('SC_MetalWingDead'), 0x49: lst('SC_SkyClawDead'), 0x17: [1408]}   # the one Turn Cannon is dead in Grid Down
 ev = list(csv.DictReader(open(ROOT / 'audit_output/events.csv')))
 JOBS = [(3, 0x02, 0x2D, 'Batton'), (3, 0x02, 0x35, 'MetalWing'), (5, 0x40, 0x49, 'SkyClaw'), (7, 0x20, 0x17, 'TurnCannon')]
 only = sys.argv[2] if len(sys.argv) > 2 else None

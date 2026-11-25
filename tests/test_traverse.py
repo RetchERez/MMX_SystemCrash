@@ -7,7 +7,7 @@ import sys, os; sys.path.insert(0, 'tools')
 from mmx import *
 ROM = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'build/v10_rc3.sfc'; rom = VANILLA.read_bytes(); P = 0x0BA8
 SRC = {1: 0x04, 3: 0x02, 5: 0x40, 7: 0x20, 8: 0x08}
-N = int(os.environ.get('CR_TRAV_FRAMES', 3600))
+N = int(os.environ.get('SC_TRAV_FRAMES', 3600))
 m = MMX(ROM, rt=ROOT / 'build/rt_trav'); pw = make_password_state(m)
 def inputs(f):
     b = ['right']

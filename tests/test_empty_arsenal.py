@@ -4,7 +4,7 @@ import sys, os, ctypes; sys.path.insert(0,'tools')
 from mmx import *
 import render_stage as R
 from PIL import Image
-ROM=Path(os.environ.get('CR_ROM', ROOT/'build/v10_rc1.sfc')); rom=VANILLA.read_bytes(); prom=ROM.read_bytes(); P=0x0BA8
+ROM=Path(os.environ.get('SC_ROM', ROOT/'build/v10_rc1.sfc')); rom=VANILLA.read_bytes(); prom=ROM.read_bytes(); P=0x0BA8
 def pc(a): return ((a>>16)&0x7F)*0x8000+(a&0x7FFF)
 m=MMX(ROM, rt=ROOT/'build/rt_ea'); pw=make_password_state(m)
 def ww(a,v): m.wb(a,v&0xff); m.wb(a+1,(v>>8)&0xff)
